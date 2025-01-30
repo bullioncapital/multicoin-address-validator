@@ -1,8 +1,6 @@
 var jsSHA = require('jssha');
 var sha512256 = require('js-sha512').sha512_256
-var Blake256 = require('./blake256');
 var keccak256 = require('./sha3')['keccak256'];
-var Blake2B = require('./blake2b');
 var base58 = require('./base58');
 var base32 = require('./base32');
 var BigNum = require('browserify-bignum');
@@ -64,7 +62,7 @@ function hexStr2byteArray(str) {
     var j = 0;
     var k = 0;
 
-     for (i = 0; i < str.length; i++) {
+    for (i = 0; i < str.length; i++) {
         var c = str.charAt(i);
         if (isHexChar(c)) {
             d <<= 4;
@@ -110,9 +108,6 @@ module.exports = {
     blake256Checksum: function (payload) {
         return this.blake256(this.blake256(payload)).substr(0, 8);
     },
-    blake2b: function (hexString, outlen) {
-        return new Blake2B(outlen).update(Buffer.from(hexString, 'hex')).digest('hex');
-    },
     keccak256: function (hexString) {
         return keccak256(hexString);
     },
@@ -125,7 +120,7 @@ module.exports = {
     base58: base58.decode,
     byteArray2hexStr: byteArray2hexStr,
     hexStr2byteArray: hexStr2byteArray,
-    bigNumberToBuffer: function(bignumber, size){
+    bigNumberToBuffer: function (bignumber, size) {
         return new BigNum(bignumber).toBuffer({ size, endian: 'big' });
     },
     base32: base32
