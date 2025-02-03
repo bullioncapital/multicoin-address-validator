@@ -1,40 +1,35 @@
-if (!global.Buffer) {
-    global.Buffer = require('buffer').Buffer;
-}
+import { getAll, getByNameOrSymbol } from "./currencies.ts";
+import { AddressTypes, CurrencyOpts } from "./types/currency.ts";
 
-var currencies = require('./currencies');
+const DEFAULT_CURRENCY_NAME = "bitcoin";
 
-var DEFAULT_CURRENCY_NAME = 'bitcoin';
+const validate = (
+  address: string,
+  currencyNameOrSymbol?: string,
+  opts?: CurrencyOpts | AddressTypes,
+) => {
+  const currency = getByNameOrSymbol(
+    currencyNameOrSymbol || DEFAULT_CURRENCY_NAME,
+  );
 
-module.exports = {
-    //validate: function (address, currencyNameOrSymbol, networkType) {
-    validate: function (address, currencyNameOrSymbol, opts) {
-        var currency = currencies.getByNameOrSymbol(currencyNameOrSymbol || DEFAULT_CURRENCY_NAME);
-
-        if (opts && opts.chainType) { // First try to validate using the chainType
-            var normalizedChainType = opts.chainType.toLowerCase();
-            var chainTypeConfig = currencies.chainTypeToValidator[normalizedChainType];
-            if (chainTypeConfig) {
-                return chainTypeConfig.validator.isValidAddress(address, { ...opts, ...chainTypeConfig }, opts);
-            }
-        }
-
-        if (currency && currency.validator) {
-            if (opts && typeof opts === 'string') {
-                return currency.validator.isValidAddress(address, currency, { networkType: opts });
-            }
-            return currency.validator.isValidAddress(address, currency, opts);
-        }
-
-        throw new Error('Missing validator for currency: ' + currencyNameOrSymbol);
-    },
-    getCurrencies: function () {
-        return currencies.getAll();
-    },
-    findCurrency: function(symbol) {
-        return currencies.getByNameOrSymbol(symbol) || null ;
-    },
-    getChainTypeToValidators: function () {
-        return currencies.chainTypeToValidator
+  if (currency && currency.validator) {
+    if (opts && typeof opts === "string") {
+      return currency.validator.isValidAddress(address, currency, {
+        networkType: opts,
+      });
     }
+    return currency.validator.isValidAddress(address, currency, opts);
+  }
+
+  throw new Error("Missing validator for currency: " + currencyNameOrSymbol);
 };
+
+const getCurrencies = () => {
+  return getAll();
+};
+
+const findCurrency = (symbol: string) => {
+  return getByNameOrSymbol(symbol) || null;
+};
+
+export { findCurrency, getCurrencies, validate };

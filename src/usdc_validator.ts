@@ -1,30 +1,49 @@
-var ETHValidator = require('./ethereum_validator');
-var Base58Validator = require('./base58_validator');
+import ETHValidator from "./ethereum_validator";
+import { isValidAddress } from "./base58_validator.ts";
+import { Currency, CurrencyOpts } from "./types/currency.ts";
 
-const solanaValidator = (address, currency, networkType) => Base58Validator.isValidAddress(address, {
-    ...currency,
-    maxLength: 44,
-    minLength: 43
-}, networkType);
+const solanaValidator = (address: string, currency: Currency) =>
+  isValidAddress(
+    address,
+    {
+      ...currency,
+      maxLength: 44,
+      minLength: 43,
+    },
+  );
 
-function checkAllValidators(address, currency, networkType) {
-    return ETHValidator.isValidAddress(address, currency, networkType) ||
-        solanaValidator(address, currency, networkType);
+function checkAllValidators(
+  address: string,
+  currency: Currency,
+  networkType: CurrencyOpts,
+) {
+  return (
+    ETHValidator.isValidAddress(address, currency, networkType) ||
+    solanaValidator(address, currency)
+  );
 }
 
-module.exports = {
-    isValidAddress: function (address, currency, opts) {
-        if (opts) {
-            switch(opts.chainType) {
-                case 'arbitrum':
-                case 'avalanche':
-                case 'erc20':
-                case 'ethereum':
-                    return ETHValidator.isValidAddress(address, currency, opts.networkType);
-                case 'solana':
-                    return solanaValidator(address, currency, opts.networkType);
-            }
-        }
-        return checkAllValidators(address, currency, opts);
+export default {
+  isValidAddress: function (
+    address: string,
+    currency: Currency,
+    opts: CurrencyOpts,
+  ) {
+    if (opts) {
+      switch (opts.chainType) {
+        case "arbitrum":
+        case "avalanche":
+        case "erc20":
+        case "ethereum":
+          return ETHValidator.isValidAddress(
+            address,
+            currency,
+            opts.networkType,
+          );
+        case "solana":
+          return solanaValidator(address, currency);
+      }
     }
+    return checkAllValidators(address, currency, opts);
+  },
 };

@@ -6,12 +6,10 @@ import BCHValidator from "./bch_validator.ts";
 import XLMValidator from "./stellar_validator.ts";
 import USDTValidator from "./usdt_validator.ts";
 import USDCValidator from "./usdc_validator.ts";
-import BIP173Validator from "./bip173_validator.ts";
-import Base58Validator from "./base58_validator.ts";
-import AptosValidator from "./aptos_validator.ts";
+import type { Currency } from "./types/currency.ts";
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
-const CURRENCIES = [
+const CURRENCIES: Currency[] = [
   {
     name: "Bitcoin",
     symbol: "btc",
@@ -182,14 +180,6 @@ const CURRENCIES = [
     validator: BTCValidator,
   },
   {
-    name: "Decred",
-    symbol: "dcr",
-    addressTypes: { prod: ["073f", "071a"], testnet: ["0f21", "0efc"] },
-    hashFunction: "blake256",
-    expectedLength: 26,
-    validator: BTCValidator,
-  },
-  {
     name: "GameCredits",
     symbol: "game",
     addressTypes: { prod: ["26", "05"], testnet: [] },
@@ -250,20 +240,6 @@ const CURRENCIES = [
     validator: BTCValidator,
   },
   {
-    name: "Waves",
-    symbol: "waves",
-    addressTypes: { prod: ["0157"], testnet: ["0154"] },
-    expectedLength: 26,
-    hashFunction: "blake256keccak256",
-    regex: /^[a-zA-Z0-9]{35}$/,
-    validator: BTCValidator,
-  },
-  {
-    name: "Aptos",
-    symbol: "apt",
-    validator: AptosValidator,
-  },
-  {
     name: "Ethereum",
     symbol: "eth",
     validator: ETHValidator,
@@ -303,17 +279,6 @@ const CURRENCIES = [
     symbol: "ada",
     bech32Hrp: { prod: ["addr"], testnet: ["addr"] },
     validator: ADAValidator,
-  },
-  {
-    name: "Monero",
-    symbol: "xmr",
-    addressTypes: {
-      prod: ["18", "42"],
-      testnet: ["53", "63"],
-      stagenet: ["24"],
-    },
-    iAddressTypes: { prod: ["19"], testnet: ["54"], stagenet: ["25"] },
-    validator: XMRValidator,
   },
   {
     name: "Aragon",
@@ -456,47 +421,10 @@ const CURRENCIES = [
     validator: ETHValidator,
   },
   {
-    name: "Nano",
-    symbol: "nano",
-    validator: NANOValidator,
-  },
-  {
-    name: "RaiBlocks",
-    symbol: "xrb",
-    validator: NANOValidator,
-  },
-  {
-    name: "Siacoin",
-    symbol: "sc",
-    validator: SCValidator,
-  },
-  {
-    name: "HyperSpace",
-    symbol: "xsc",
-    validator: SCValidator,
-  },
-  {
-    name: "loki",
-    symbol: "loki",
-    addressTypes: { prod: ["114", "115", "116"], testnet: [] },
-    iAddressTypes: { prod: ["115"], testnet: [] },
-    validator: XMRValidator,
-  },
-  {
     name: "LBRY Credits",
     symbol: "lbc",
     addressTypes: { prod: ["55"], testnet: [] },
     validator: BTCValidator,
-  },
-  {
-    name: "Tron",
-    symbol: "trx",
-    validator: TRXValidator,
-  },
-  {
-    name: "Nem",
-    symbol: "xem",
-    validator: NEMValidator,
   },
   {
     name: "Stellar",
@@ -507,12 +435,6 @@ const CURRENCIES = [
     name: "BTU Protocol",
     symbol: "btu",
     validator: ETHValidator,
-  },
-  {
-    name: "Crypto.com Coin",
-    symbol: "cro",
-    bech32Hrp: { prod: ["cro"], testnet: ["tcro"] },
-    validator: BIP173Validator,
   },
   {
     name: "Multi-collateral DAI",
@@ -585,16 +507,6 @@ const CURRENCIES = [
     validator: ETHValidator,
   },
   {
-    name: "EOS",
-    symbol: "eos",
-    validator: EOSValidator,
-  },
-  {
-    name: "Tezos",
-    symbol: "xtz",
-    validator: XTZValidator,
-  },
-  {
     name: "VeChain",
     symbol: "vet",
     validator: ETHValidator,
@@ -660,11 +572,6 @@ const CURRENCIES = [
     validator: AlgoValidator,
   },
   {
-    name: "Polkadot",
-    symbol: "dot",
-    validator: DotValidator,
-  },
-  {
     name: "Uniswap Coin",
     symbol: "uni",
     validator: ETHValidator,
@@ -683,20 +590,6 @@ const CURRENCIES = [
     name: "Decentraland",
     symbol: "mana",
     validator: ETHValidator,
-  },
-  {
-    name: "Solana",
-    symbol: "sol",
-    validator: Base58Validator,
-    maxLength: 44,
-    minLength: 43,
-  },
-  {
-    name: "Bonk",
-    symbol: "bonk",
-    validator: Base58Validator,
-    maxLength: 44,
-    minLength: 43,
   },
   {
     name: "Binance",
@@ -890,58 +783,18 @@ const CURRENCIES = [
   },
 ];
 
-const chainTypeToValidator = {};
-CURRENCIES.forEach((currency) => {
-  const {
-    name,
-    validator,
-    addressTypes,
-    iAddressTypes,
-    bech32Hrp,
-    maxLength,
-    minLength,
-    regexp,
-    expectedLength,
-    hashFunction,
-  } = currency;
-
-  chainTypeToValidator[name.toLowerCase()] = {
-    validator,
-    addressTypes,
-    bech32Hrp,
-    maxLength,
-    minLength,
-    iAddressTypes,
-    regexp,
-    expectedLength,
-    hashFunction,
-  };
-});
-
-module.exports = {
-  getByNameOrSymbol: function (currencyNameOrSymbol) {
-    var nameOrSymbol = currencyNameOrSymbol.toLowerCase();
-    return CURRENCIES.find(function (currency) {
-      return (
-        currency.name.toLowerCase() === nameOrSymbol ||
-        currency.symbol.toLowerCase() === nameOrSymbol
-      );
-    });
-  },
-  getAll: function () {
-    return CURRENCIES;
-  },
-
-  chainTypeToValidator,
+const getByNameOrSymbol = (currencyNameOrSymbol: string) => {
+  const nameOrSymbol = currencyNameOrSymbol.toLowerCase();
+  return CURRENCIES.find(function (currency) {
+    return (
+      currency.name.toLowerCase() === nameOrSymbol ||
+      currency.symbol.toLowerCase() === nameOrSymbol
+    );
+  });
 };
 
-////spit out details for readme.md
-// CURRENCIES
-//     .sort((a, b) => a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1)
-//     .forEach(c => console.log(`* ${c.name}/${c.symbol} \`'${c.name}'\` or \`'${c.symbol}'\` `));
+const getAll = () => {
+  return CURRENCIES;
+};
 
-////spit out keywords for package.json
-// CURRENCIES
-//     .sort((a, b) => a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1)
-//     .forEach(c => console.log(`"${c.name}","${c.symbol}",`));
-//
+export { getAll, getByNameOrSymbol };

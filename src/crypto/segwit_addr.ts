@@ -18,15 +18,21 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+import { Encodings } from "../types/encodings.ts";
 import bech32 from "./bech32.ts";
 
-function convertbits(data, frombits, tobits, pad) {
-  var acc = 0;
-  var bits = 0;
-  var ret = [];
-  var maxv = (1 << tobits) - 1;
-  for (var p = 0; p < data.length; ++p) {
-    var value = data[p];
+function convertbits(
+  data: number[],
+  frombits: number,
+  tobits: number,
+  pad: boolean,
+) {
+  let acc = 0;
+  let bits = 0;
+  const ret = [];
+  const maxv = (1 << tobits) - 1;
+  for (let p = 0; p < data.length; ++p) {
+    const value = data[p];
     if (value < 0 || value >> frombits !== 0) {
       return null;
     }
@@ -47,9 +53,9 @@ function convertbits(data, frombits, tobits, pad) {
   return ret;
 }
 
-function decode(hrp, addr) {
-  var bech32m = false;
-  var dec = bech32.decode(addr, bech32.encodings.BECH32);
+function decode(hrp: string, addr: string) {
+  let bech32m = false;
+  let dec = bech32.decode(addr, bech32.encodings.BECH32);
   if (dec === null) {
     dec = bech32.decode(addr, bech32.encodings.BECH32M);
     bech32m = true;
@@ -62,7 +68,7 @@ function decode(hrp, addr) {
   ) {
     return null;
   }
-  var res = convertbits(dec.data.slice(1), 5, 8, false);
+  const res = convertbits(dec.data.slice(1), 5, 8, false);
   if (res === null || res.length < 2 || res.length > 40) {
     return null;
   }
@@ -78,56 +84,29 @@ function decode(hrp, addr) {
   return { version: dec.data[0], program: res };
 }
 
-function encode(hrp, version, program) {
-  var enc = bech32.encodings.BECH32;
+function encode(hrp: string, version: number, program: number[]) {
+  let enc: Encodings = bech32.encodings.BECH32;
   if (version > 0) {
     enc = bech32.encodings.BECH32M;
   }
-  var ret = bech32.encode(
+
+  const bits = convertbits(program, 8, 5, true);
+  if (bits === null) {
+    return null;
+  }
+
+  const ret = bech32.encode(
     hrp,
-    [version].concat(convertbits(program, 8, 5, true)),
-    enc
+    [version].concat(bits),
+    enc,
   );
-  if (decode(hrp, ret, enc) === null) {
+  if (decode(hrp, ret) === null) {
     return null;
   }
   return ret;
 }
 
-/////////////////////////////////////////////////////
-
-var DEFAULT_NETWORK_TYPE = "prod";
-
-function isValidAddress(address, currency, opts = {}) {
-  if (!currency.bech32Hrp || currency.bech32Hrp.length === 0) {
-    return false;
-  }
-
-  const { networkType = DEFAULT_NETWORK_TYPE } = opts;
-
-  var correctBech32Hrps;
-  if (networkType === "prod" || networkType === "testnet") {
-    correctBech32Hrps = currency.bech32Hrp[networkType];
-  } else if (currency.bech32Hrp) {
-    correctBech32Hrps = currency.bech32Hrp.prod.concat(
-      currency.bech32Hrp.testnet
-    );
-  } else {
-    return false;
-  }
-
-  for (var chrp of correctBech32Hrps) {
-    var ret = decode(chrp, address);
-    if (ret) {
-      return encode(chrp, ret.version, ret.program) === address.toLowerCase();
-    }
-  }
-
-  return false;
-}
-
-module.exports = {
-  encode: encode,
-  decode: decode,
-  isValidAddress: isValidAddress,
+export default {
+  encode,
+  decode,
 };

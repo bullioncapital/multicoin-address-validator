@@ -1,11 +1,12 @@
 import cbor from "cbor-js";
 import CRC from "crc";
-import base58 from "./crypto/base58.ts";
-import BIP173Validator from "./bip173_validator.ts";
+import { isValidAddress as isValidAddressShelley } from "./bip173_validator.ts";
+import { Currency, CurrencyOpts } from "./types/currency.ts";
+import { decodeBase58 } from "jsr:@std/encoding/base58";
 
-function getDecoded(address) {
+function getDecoded(address: string) {
   try {
-    var decoded = base58.decode(address);
+    const decoded = decodeBase58(address);
     return cbor.decode(new Uint8Array(decoded).buffer);
   } catch (e) {
     // if decoding fails, assume invalid address
@@ -13,31 +14,30 @@ function getDecoded(address) {
   }
 }
 
-function isValidAddressV1(address) {
-  var decoded = getDecoded(address);
+function isValidAddressV1(address: string) {
+  const decoded = getDecoded(address);
 
   if (!decoded || (!Array.isArray(decoded) && decoded.length != 2)) {
     return false;
   }
 
-  var tagged = decoded[0];
-  var validCrc = decoded[1];
+  const tagged = decoded[0];
+  const validCrc = decoded[1];
   if (typeof validCrc != "number") {
     return false;
   }
 
   // get crc of the payload
-  var crc = CRC.crc32(tagged);
+  const crc = CRC.crc32(tagged);
 
   return crc == validCrc;
 }
 
-function isValidAddressShelley(address, currency, opts) {
-  // shelley address are just bip 173 - bech32 addresses (https://cips.cardano.org/cips/cip4/)
-  return BIP173Validator.isValidAddress(address, currency, opts);
-}
-
-const isValidAddress = (address, currency, opts = {}) => {
+const isValidAddress = (
+  address: string,
+  currency: Currency,
+  opts: CurrencyOpts = {},
+) => {
   return (
     isValidAddressV1(address) || isValidAddressShelley(address, currency, opts)
   );

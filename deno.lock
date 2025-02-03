@@ -1,25 +1,35 @@
 {
   "version": "4",
   "specifiers": {
+    "jsr:@std/encoding@*": "1.0.7",
+    "npm:@types/node@*": "22.5.4",
     "npm:base-x@4": "4.0.0",
-    "npm:browserify-bignum@^1.3.0-2": "1.3.0-2",
     "npm:buffer@^6.0.3": "6.0.3",
     "npm:bundle@^2.1.0": "2.1.0",
     "npm:cbor-js@0.1": "0.1.0",
     "npm:crc@^4.3.2": "4.3.2_buffer@6.0.3",
+    "npm:decimal.js-light@^2.5.1": "2.5.1",
     "npm:js-sha512@0.9": "0.9.0",
     "npm:jssha@^3.3.1": "3.3.1",
     "npm:lodash.isequal@^4.5.0": "4.5.0"
   },
+  "jsr": {
+    "@std/encoding@1.0.7": {
+      "integrity": "f631247c1698fef289f2de9e2a33d571e46133b38d042905e3eac3715030a82d"
+    }
+  },
   "npm": {
+    "@types/node@22.5.4": {
+      "integrity": "sha512-FDuKUJQm/ju9fT/SeX/6+gBzoPzlVCzfzmGkwKvRHQVxi4BntVbyIwf6a4Xn62mrvndLiml6z/UBXIdEVjQLXg==",
+      "dependencies": [
+        "undici-types"
+      ]
+    },
     "base-x@4.0.0": {
       "integrity": "sha512-FuwxlW4H5kh37X/oW59pwTzzTKRzfrrQwhmyspRM7swOEZcHtDZSCt45U6oKgtuFE+WYPblePMVIPR4RZrh/hw=="
     },
     "base64-js@1.5.1": {
       "integrity": "sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA=="
-    },
-    "browserify-bignum@1.3.0-2": {
-      "integrity": "sha512-PwVvKC3WIV7ENfsG6VAIDq4R5st6kQt+Fod3WL5l7+MRONClo3J6xGQvRJHHM/ScwcNCH3GfYX5UOCuoNN/rLw=="
     },
     "buffer@6.0.3": {
       "integrity": "sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==",
@@ -40,6 +50,9 @@
         "buffer"
       ]
     },
+    "decimal.js-light@2.5.1": {
+      "integrity": "sha512-qIMFpTMZmny+MMIitAB6D7iVPEorVw6YQRWkvarTkT4tBeSLLiHzcwj6q0MmYSFCiVpiqPJTJEYIrpcPzVEIvg=="
+    },
     "ieee754@1.2.1": {
       "integrity": "sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA=="
     },
@@ -51,16 +64,19 @@
     },
     "lodash.isequal@4.5.0": {
       "integrity": "sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ=="
+    },
+    "undici-types@6.19.8": {
+      "integrity": "sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw=="
     }
   },
   "workspace": {
     "dependencies": [
       "npm:base-x@4",
-      "npm:browserify-bignum@^1.3.0-2",
       "npm:buffer@^6.0.3",
       "npm:bundle@^2.1.0",
       "npm:cbor-js@0.1",
       "npm:crc@^4.3.2",
+      "npm:decimal.js-light@^2.5.1",
       "npm:js-sha512@0.9",
       "npm:jssha@^3.3.1",
       "npm:lodash.isequal@^4.5.0"

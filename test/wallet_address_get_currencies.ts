@@ -1,33 +1,39 @@
-var isNode = typeof module !== 'undefined' && typeof module.exports !== 'undefined'
+import {
+  findCurrency,
+  getCurrencies,
+} from "../src/wallet_address_validator.ts";
+import { expect } from "jsr:@std/expect";
+import { describe, it } from "jsr:@std/testing/bdd";
 
-var chai = isNode ? require('chai') : window.chai,
-    expect = chai.expect
+describe("WAValidator.getCurrencies()", () => {
+  it("Should get all currencies", function () {
+    const currencies = getCurrencies();
+    expect(currencies).toReturn();
+    expect(currencies.length).toBeGreaterThan(0);
+  });
 
-var WAValidator = isNode ? require('../src/wallet_address_validator') : window.WAValidator
+  it("Should find a specific currency by symbol", function () {
+    const currency = findCurrency("xrp");
 
-describe('WAValidator.getCurrencies()', function () {
-    it('Should get all currencies', function () {
-        var currencies = WAValidator.getCurrencies();
-        expect(currencies).to.be.ok;
-        expect(currencies.length).to.be.greaterThan(0);
-    });
+    if (!currency) {
+      throw new Error("Failed to get currency");
+    }
+    expect(currency.name).toEqual("Ripple");
+    expect(currency.symbol).toEqual("xrp");
+  });
 
-    it('Should find a specific currency by symbol', function() {
-        var currency = WAValidator.findCurrency('xrp');
-        expect(currency).to.be.ok;
-        expect(currency.name).to.equal('Ripple');
-        expect(currency.symbol).to.equal('xrp');
-    });
+  it("Should find a specific currency by name", function () {
+    const currency = findCurrency("Ripple");
 
-    it('Should find a specific currency by name', function() {
-        var currency = WAValidator.findCurrency('Ripple');
-        expect(currency).to.be.ok;
-        expect(currency.name).to.equal('Ripple');
-        expect(currency.symbol).to.equal('xrp');
-    });
+    if (!currency) {
+      throw new Error("Failed to get currency");
+    }
+    expect(currency.name).toEqual("Ripple");
+    expect(currency.symbol).toEqual("xrp");
+  });
 
-    it('Should return null if currency is not found', function() {
-        var currency = WAValidator.findCurrency('random');
-        expect(currency).to.be.null;
-    });
+  it("Should return null if currency is not found", function () {
+    const currency = findCurrency("random");
+    expect(currency).toBe(null);
+  });
 });
