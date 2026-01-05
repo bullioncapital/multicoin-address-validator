@@ -1,5 +1,5 @@
 import { describe, it } from "jsr:@std/testing/bdd";
-import { AddressTypes, CurrencyOpts } from "../src/types/currency.ts";
+import type { AddressTypes, CurrencyOpts } from "../src/types/currency.ts";
 import { validate } from "../src/wallet_address_validator.ts";
 import { expect } from "jsr:@std/expect/expect";
 
@@ -21,9 +21,9 @@ function invalid(
   expect(valid).toBe(false);
 }
 
-describe("WAValidator.validate()", function () {
-  describe("valid results", function () {
-    it("should return true for correct avalanche addresses", function () {
+describe("WAValidator.validate()", () => {
+  describe("valid results", () => {
+    it("should return true for correct avalanche addresses", () => {
       valid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "avax");
       valid("0xa00354276d2fC74ee91e37D085d35748613f4748", "avax");
       valid("0xAff4d6793F584a473348EbA058deb8caad77a288", "AVAX");
@@ -48,7 +48,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return true for correct sonic addresses", function () {
+    it("should return true for correct sonic addresses", () => {
       valid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "s");
       valid("0xa00354276d2fC74ee91e37D085d35748613f4748", "s");
       valid("0xAff4d6793F584a473348EbA058deb8caad77a288", "S");
@@ -73,7 +73,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return true for correct bitcoin addresses", function () {
+    it("should return true for correct bitcoin addresses", () => {
       valid("12KYrjTdVGjFMtaxERSk3gphreJ5US8aUP", "bitcoin");
       valid("12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y", "bitcoin");
       valid("12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y", "BTC");
@@ -158,7 +158,7 @@ describe("WAValidator.validate()", function () {
       invalid("bc1gmk9yu", "bitcoin");
     });
 
-    it("should return true for correct bitcoincash addresses", function () {
+    it("should return true for correct bitcoincash addresses", () => {
       valid("12KYrjTdVGjFMtaxERSk3gphreJ5US8aUP", "bitcoincash");
       valid("12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y", "bitcoincash");
       valid("12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y", "BCH");
@@ -177,7 +177,7 @@ describe("WAValidator.validate()", function () {
       valid("bitcoincash:qq4v32mtagxac29my6gwj6fd4tmqg8rysu23dax807", "bch");
     });
 
-    it("should return true for correct litecoin addresses", function () {
+    it("should return true for correct litecoin addresses", () => {
       valid("LVg2kJoFNg45Nbpy53h7Fe1wKyeXVRhMH9", "litecoin");
       valid("LVg2kJoFNg45Nbpy53h7Fe1wKyeXVRhMH9", "LTC");
       valid("LTpYZG19YmfvY2bBDYtCKpunVRw7nVgRHW", "litecoin");
@@ -200,7 +200,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return true for correct peercoin addresses", function () {
+    it("should return true for correct peercoin addresses", () => {
       valid("PHCEsP6od3WJ8K2WKWEDBYKhH95pc9kiZN", "peercoin");
       valid("PSbM1pGoE9dnAuVWvpQqTTYVpKZU41dNAz", "peercoin");
       valid("PUULeHrJL2WujJkorc2RsUAR3SardKUauu", "peercoin");
@@ -212,7 +212,7 @@ describe("WAValidator.validate()", function () {
       valid("2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7", "peercoin", "testnet");
     });
 
-    it("should return true for correct dogecoin addresses", function () {
+    it("should return true for correct dogecoin addresses", () => {
       valid("DPpJVPpvPNP6i6tMj4rTycAGh8wReTqaSU", "dogecoin");
       valid("DNzLUN6MyYVS5zf4Xc2yK69V3dXs6Mxia5", "dogecoin");
       valid("DPS6iZj7roHquvwRYXNBua9QtKPzigUUhM", "dogecoin");
@@ -224,7 +224,7 @@ describe("WAValidator.validate()", function () {
       valid("2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7", "dogecoin", "testnet");
     });
 
-    it("should return true for correct beavercoin addresses", function () {
+    it("should return true for correct beavercoin addresses", () => {
       valid("BPPtB4EpPi5wCaGXZuNyKQgng8ya579qUh", "beavercoin");
       valid("BC1LLYoE4mTCHTJhVYvLGxhRTwAHyWTQ49", "beavercoin");
       valid("BBuyeg2vjtyFdMNj3LTxuVra4wJMKVAY9C", "beavercoin");
@@ -236,7 +236,7 @@ describe("WAValidator.validate()", function () {
       valid("2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7", "beavercoin", "testnet");
     });
 
-    it("should return true for correct freicoin addresses", function () {
+    it("should return true for correct freicoin addresses", () => {
       valid("1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "freicoin");
       valid("1oNLrsHnBcR6dpaBpwz3LSwutbUNkNSjs", "freicoin");
       valid("1SQHtwR5oJRKLfiWQ2APsAd9miUc4k2ez", "freicoin");
@@ -248,7 +248,7 @@ describe("WAValidator.validate()", function () {
       valid("2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7", "freicoin", "testnet");
     });
 
-    it("should return true for correct protoshares addresses", function () {
+    it("should return true for correct protoshares addresses", () => {
       valid("PaNGELmZgzRQCKeEKM6ifgTqNkC4ceiAWw", "protoshares");
       valid("Piev8TMX2fT5mFtgxx2TXJaqXP37weMPuD", "protoshares");
       valid("PgsuLoe9ojRKFGJGVpqqk37gAqNJ4ozboD", "protoshares");
@@ -260,7 +260,7 @@ describe("WAValidator.validate()", function () {
       valid("2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7", "protoshares", "testnet");
     });
 
-    it("should return true for correct megacoin addresses", function () {
+    it("should return true for correct megacoin addresses", () => {
       valid("MWUHaNxjXGZUYTh92i3zuDmsnH1rHSBk5M", "megacoin");
       valid("MSAkrhRyte7bz999Ga5SqYjzypFFYa2oEb", "megacoin");
       valid("MLUTAtDQFcfo1QACWocLuufFq5fBDTpCHE", "megacoin");
@@ -272,7 +272,7 @@ describe("WAValidator.validate()", function () {
       valid("2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7", "megacoin", "testnet");
     });
 
-    it("should return true for correct primecoin addresses", function () {
+    it("should return true for correct primecoin addresses", () => {
       valid("AVKeiZ5JadfWdH2EYVgVRfX4ufoyd4ehuM", "primecoin");
       valid("AQXBRPyob4dywUJ21RUKrR1xetQCDVenKD", "primecoin");
       valid("ANHfTZnskKqaBU7oZuSha9SpbHU3YBfeKf", "primecoin");
@@ -285,7 +285,7 @@ describe("WAValidator.validate()", function () {
       valid("2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7", "primecoin", "testnet");
     });
 
-    it("should return true for correct auroracoin addresses", function () {
+    it("should return true for correct auroracoin addresses", () => {
       valid("ARM3GLZXF1PDTZ5vz3wh5MVahbK9BHTWAN", "auroracoin");
       valid("AUtfc6ThCLb7FuEu7QPrWpJuaXaJRPciDF", "auroracoin");
       valid("AUN1oaj5hjispGnczt8Aruw3TxgGyRqB3V", "auroracoin");
@@ -298,7 +298,7 @@ describe("WAValidator.validate()", function () {
       valid("2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7", "auroracoin", "testnet");
     });
 
-    it("should return true for correct namecoin addresses", function () {
+    it("should return true for correct namecoin addresses", () => {
       valid("NEpeRmS775fnti8TDgJA28m8KLEfNNRZvT", "namecoin");
       valid("MyJ691bGJ48RBK2LS8n1U57wcFLFScFXxi", "namecoin");
       valid("NFY9aw1RXLGtWpeqgNQXprnUcZXyKNinTh", "namecoin");
@@ -306,7 +306,7 @@ describe("WAValidator.validate()", function () {
       valid("NCPPc7Pzb75CpRPJQPRRh6ouJTq7BCy1H4", "NMC");
     });
 
-    it("should return true for correct BioCoin addresses", function () {
+    it("should return true for correct BioCoin addresses", () => {
       valid("B7xseoLGk7hEpMDDeSvZDKmmiAMHWiccok", "biocoin");
       valid("B8zjmYFGhWmiaQSJshfrnefE72xCapCkvo", "biocoin");
       valid("muH8LL42DiMs8GEQ6Grfi8KUw2uFvuKr1J", "biocoin", "testnet");
@@ -314,7 +314,7 @@ describe("WAValidator.validate()", function () {
       valid("B8zjmYFGhWmiaQSJshfrnefE72xCapCkvo", "BIO");
     });
 
-    it("should return true for correct Garlicoin addresses", function () {
+    it("should return true for correct Garlicoin addresses", () => {
       valid("GU2NtcNotWFiZjTp2Vdgf5CjeMfgsWYCua", "garlicoin");
       valid("GNWeWaoQ6rv21ZFjJWT9vb91hXUzFTLkru", "garlicoin");
       valid("mjKbQTkgwzmsL3J86tdVzhyW9pc4NePqTb", "garlicoin", "testnet");
@@ -322,7 +322,7 @@ describe("WAValidator.validate()", function () {
       valid("GU2NtcNotWFiZjTp2Vdgf5CjeMfgsWYCua", "GRLC");
     });
 
-    it("should return true for correct Vertcoin addresses", function () {
+    it("should return true for correct Vertcoin addresses", () => {
       valid("3PgeyhEJEnS5CeBu3iFcu3JHVKemeHx1AW", "VTC");
       valid("353nERPQKhGj4WGzoiWcareA76TPgRCVNA", "VTC");
       valid("376g4TmL8uQKFYsRFrbv5iz9srmb5bocEt", "VTC");
@@ -336,7 +336,7 @@ describe("WAValidator.validate()", function () {
       valid("Vri6Q4GgNFfdtcpxD961TotJwaSaYQCaL5", "VTC");
     });
 
-    it("should return true for correct BitcoinGold addresses", function () {
+    it("should return true for correct BitcoinGold addresses", () => {
       valid("GW3JrQyHtoVfEFES3Y9JagiX3VSKQStLwj", "bitcoingold");
       valid("GUDWdeMyAXQbrNFFivAhkJQ1GfBCFdc7JF", "bitcoingold");
       valid("mvww6DEJ18dbyQUukpVQXvLgrNDJazZn1Y", "bitcoingold", "testnet");
@@ -344,7 +344,7 @@ describe("WAValidator.validate()", function () {
       valid("GSNFPRsdaM3MXrU5HW1AxgFwmUQC8HXK9F", "BTG");
     });
 
-    it("should return true for correct Decred addresses", function () {
+    it("should return true for correct Decred addresses", () => {
       valid("Dsesax2GJnMN4wwmWo5rJGq73dDK217Rh85", "DCR");
       valid("DsYuxtvGRfN8rncXAndtLUpJm55F77K17RA", "decred");
       valid("DsaXDG2NrJW8g4tFAb8n9MNx81Sn3Qc8AEV", "decred");
@@ -352,7 +352,7 @@ describe("WAValidator.validate()", function () {
       valid("TsZ9QmAoadF12hGvyALp6qvaF4be3BmLqG9", "dcr", "testnet");
     });
 
-    it("should return true for correct Digibyte addresses", function () {
+    it("should return true for correct Digibyte addresses", () => {
       valid("DG2rM2orU2JH5i4ACh3AKNpRTNESdv5xf8", "DGB");
       valid("DBR2Lj1F17eHGHXgbpae2Wb4m39bDyA1qo", "DGB");
       valid("D9TDZTR9Z9Mx2NoDJnhqhnYhDLKRAmsL9n", "digibyte");
@@ -362,7 +362,7 @@ describe("WAValidator.validate()", function () {
       valid("SiEgX2mSYJjVN9YGuC23uckE6BS1ZSHcGD", "DGB", "prod");
     });
 
-    it("should return true for correct Ethereum addresses", function () {
+    it("should return true for correct Ethereum addresses", () => {
       valid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "ethereum");
       valid("0xa00354276d2fC74ee91e37D085d35748613f4748", "ethereum");
       valid("0xAff4d6793F584a473348EbA058deb8caad77a288", "ETH");
@@ -384,7 +384,7 @@ describe("WAValidator.validate()", function () {
       valid("0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb", "CLO");
     });
 
-    it("should return true for correct Aptos addresses", function () {
+    it("should return true for correct Aptos addresses", () => {
       valid(
         "0xaabf25b0c115130a4ad88bfa08627c5a103b7851e90869c23fadaf0512dd5133",
         "aptos",
@@ -403,7 +403,7 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return true for correct Arbitrum addresses", function () {
+    it("should return true for correct Arbitrum addresses", () => {
       valid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "arb");
       valid("0xa00354276d2fC74ee91e37D085d35748613f4748", "arb");
       valid("0xAff4d6793F584a473348EbA058deb8caad77a288", "ARB");
@@ -433,7 +433,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return true for correct Binance addresses", function () {
+    it("should return true for correct Binance addresses", () => {
       valid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "bnb");
       valid("0xa00354276d2fC74ee91e37D085d35748613f4748", "bnb");
       valid("0xAff4d6793F584a473348EbA058deb8caad77a288", "BNB");
@@ -455,7 +455,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return true for correct BinanceSmartChain addresses", function () {
+    it("should return true for correct BinanceSmartChain addresses", () => {
       valid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "bnb");
       valid("0xa00354276d2fC74ee91e37D085d35748613f4748", "bnb");
       valid("0xAff4d6793F584a473348EbA058deb8caad77a288", "BNB");
@@ -478,7 +478,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return true for correct Ethereum POW addresses", function () {
+    it("should return true for correct Ethereum POW addresses", () => {
       valid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "ethereumPow");
       valid("0xa00354276d2fC74ee91e37D085d35748613f4748", "ethereumPow");
       valid("0xAff4d6793F584a473348EbA058deb8caad77a288", "ETHW");
@@ -493,7 +493,7 @@ describe("WAValidator.validate()", function () {
       valid("0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb", "ETHW");
     });
 
-    it("should return true for correct CELO addresses", function () {
+    it("should return true for correct CELO addresses", () => {
       valid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "celo");
       valid("0xa00354276d2fC74ee91e37D085d35748613f4748", "celo");
       valid("0xAff4d6793F584a473348EbA058deb8caad77a288", "CELO");
@@ -508,7 +508,7 @@ describe("WAValidator.validate()", function () {
       valid("0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb", "CELO");
     });
 
-    it("should return true for correct OP addresses", function () {
+    it("should return true for correct OP addresses", () => {
       valid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "op");
       valid("0xa00354276d2fC74ee91e37D085d35748613f4748", "op");
       valid("0xAff4d6793F584a473348EbA058deb8caad77a288", "OP");
@@ -523,11 +523,11 @@ describe("WAValidator.validate()", function () {
       valid("0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb", "OP");
     });
 
-    it("should return true for correct MANA addresses", function () {
+    it("should return true for correct MANA addresses", () => {
       valid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "mana");
     });
 
-    it("should return true for correct YFI addresses", function () {
+    it("should return true for correct YFI addresses", () => {
       valid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "yfi");
       valid("0xa00354276d2fC74ee91e37D085d35748613f4748", "yfi");
       valid("0xAff4d6793F584a473348EbA058deb8caad77a288", "YFI");
@@ -542,7 +542,7 @@ describe("WAValidator.validate()", function () {
       valid("0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb", "YFI");
     });
 
-    it("should return true for correct binance coin addresses", function () {
+    it("should return true for correct binance coin addresses", () => {
       valid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "binance");
       valid("0xa00354276d2fC74ee91e37D085d35748613f4748", "binance");
       valid("0xAff4d6793F584a473348EbA058deb8caad77a288", "BNB");
@@ -551,7 +551,7 @@ describe("WAValidator.validate()", function () {
       valid("0x8617E340B3D01FA5F11F306F4090FD50E238070D", "bnb");
     });
 
-    it("should return true for correct Ripple addresses", function () {
+    it("should return true for correct Ripple addresses", () => {
       valid("rG1QQv2nh2gr7RCZ1P8YYcBUKCCN633jCn", "ripple");
       valid("rG1QQv2nh2gr7RCZ1P8YYcBUKCCN633jCn", "XRP");
       valid("r3kmLJN5D28dHuH8vZNUZpMC43pEHpaocV", "XRP");
@@ -559,7 +559,7 @@ describe("WAValidator.validate()", function () {
       valid("rDTXLQ7ZKZVKz33zJbHjgVShjsBnqMBhmN", "XRP");
     });
 
-    it("should return true for correct dash addresses", function () {
+    it("should return true for correct dash addresses", () => {
       valid("Xx4dYKgz3Zcv6kheaqog3fynaKWjbahb6b", "dash");
       valid("XcY4WJ6Z2Q8w7vcYER1JypC8s2oa3SQ1b1", "DASH");
       valid("XqMkVUZnqe3w4xvgdZRtZoe7gMitDudGs4", "dash");
@@ -568,16 +568,16 @@ describe("WAValidator.validate()", function () {
       valid("yP5oXZQXBfBf9FyfZDpFiKDypxuNUKUV2E", "dash", "testnet");
     });
 
-    it("should return true for correct neo addresses", function () {
+    it("should return true for correct neo addresses", () => {
       valid("AR4QmqYENiZAD6oXe7ftm6eDcwtHk7rVTT", "neo");
       valid("AKDVzYGLczmykdtRaejgvWeZrvdkVEvQ1X", "NEO");
     });
 
-    it("should return true for correct neo gas addresses", function () {
+    it("should return true for correct neo gas addresses", () => {
       valid("AR4QmqYENiZAD6oXe7ftm6eDcwtHk7rVTT", "neogas");
     });
 
-    it("should return true for correct qtum addresses", function () {
+    it("should return true for correct qtum addresses", () => {
       valid("QNjUiD3bVVZwYTc5AhpeQbS1mfb2guyWhe", "qtum");
       valid("QVZnSrMwKp6AL4FjUPPnfFgsma6j1DXQXu", "QTUM");
       valid("MCgyroQse81wuv5RwPpY5DXDNxeafzLFJ8", "QTUM");
@@ -589,68 +589,68 @@ describe("WAValidator.validate()", function () {
       valid("qchBPDUYswobzpDmY5DsTStt74sTYQtaQv", "qtum", "testnet");
     });
 
-    it("should return true for correct votecoin addresses", function () {
+    it("should return true for correct votecoin addresses", () => {
       valid("t1U9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq", "votecoin");
       valid("t3Vz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", "VOT");
       valid("t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "votecoin", "testnet");
     });
 
-    it("should return true for correct bitcoinz addresses", function () {
+    it("should return true for correct bitcoinz addresses", () => {
       valid("t1U9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq", "bitcoinz");
       valid("t3Vz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", "BTCZ");
       valid("t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "bitcoinz", "testnet");
     });
 
-    it("should return true for correct zclassic addresses", function () {
+    it("should return true for correct zclassic addresses", () => {
       valid("t1U9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq", "zclassic");
       valid("t3Vz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", "ZCL");
       valid("t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "zclassic", "testnet");
     });
 
-    it("should return true for correct hush addresses", function () {
+    it("should return true for correct hush addresses", () => {
       valid("t1U9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq", "hush");
       valid("t3Vz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", "HUSH");
       valid("t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "hush", "testnet");
     });
 
-    it("should return true for correct zcash addresses", function () {
+    it("should return true for correct zcash addresses", () => {
       valid("t1U9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq", "zcash");
       valid("t3Vz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", "ZEC");
       valid("t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "zcash", "testnet");
     });
 
-    it("should return true for correct bitcoinprivate addresses", function () {
+    it("should return true for correct bitcoinprivate addresses", () => {
       valid("b1M4XXPFhwMb1SP33yhzn3h9qWXjujkgep4", "bitcoinprivate");
       //valid('bx....', 'BTCP');
       //valid('nx....', 'bitcoinprivate', 'testnet');
     });
 
-    it("should return true for correct snowgem addresses", function () {
+    it("should return true for correct snowgem addresses", () => {
       valid("s1fx7WBkjB4UH6qQjPp6Ysmtr1C1JiTK2Yw", "snowgem");
       valid("s3d27MhkBRt3ha2UuxhjXaYF4DCnttTMnL1", "SNG");
       valid("t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "snowgem", "testnet");
     });
 
-    it("should return true for correct zencash addresses", function () {
+    it("should return true for correct zencash addresses", () => {
       valid("znhiGGfYRepxkBjXYvA2kFrXiC351i9ta4z", "zencash");
       valid("zssEdGnZCQ9G86LZFtbynMn1hYTVhn6eYCL", "ZEN");
       valid("ztmWMDLWjbruCJxKmmfAZiT6QAQdiv5F291", "zencash", "testnet");
     });
 
-    it("should return true for correct komodo addresses", function () {
+    it("should return true for correct komodo addresses", () => {
       valid("R9R5HirAzqDcWrWGiJEL115dpV3QB3hobH", "komodo");
       valid("RAvj2KKVUohTu3hVdNJ4U6hQi7TNawpacH", "KMD");
       //valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'komodo', 'testnet');
     });
 
-    it("should return true for correct Bankex addresses", function () {
+    it("should return true for correct Bankex addresses", () => {
       valid("0xeac39e1bc802baae3d4b9cb518f3f60374bbad6c", "bankex");
       valid("0x45245bc59219eeaaf6cd3f382e078a461ff9de7b", "BKX");
       valid("0xf40d80FCfa5cdEa0bB1E570c2D52132ac9bC6aEC", "bankex", "testnet");
       valid("0x8A7395f281EeCf2B471B689E87Cf4C7fa8bb957d", "BKX", "testnet");
     });
 
-    it("should return true for correct Cardano addresses", function () {
+    it("should return true for correct Cardano addresses", () => {
       valid(
         "Ae2tdPwUPEYzs5BRbGcoS3DXvK8mwgggmESz4HqUwMyaS9eNksZGz1LMS9v",
         "ada",
@@ -683,7 +683,7 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return true for correct monero addresses", function () {
+    it("should return true for correct monero addresses", () => {
       valid(
         "47zQ5LAivg6hNCgijXSEFVLX7mke1bgM6YGLFaANDoJbgXDymcAAZvvMNt2PmMpqEe5qRy2zyfMYXdwpmdyitiFh84xnPG2",
         "monero",
@@ -724,7 +724,7 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return true for correct erc20 addresses", function () {
+    it("should return true for correct erc20 addresses", () => {
       valid("0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB", "game");
       valid("0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb", "game");
 
@@ -732,7 +732,7 @@ describe("WAValidator.validate()", function () {
       valid("0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb", "usdc");
     });
 
-    it("should return true for correct erc20 addresses for unknown tokens, when chainType is provided", function () {
+    it("should return true for correct erc20 addresses for unknown tokens, when chainType is provided", () => {
       valid("0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB", "eurc", {
         chainType: "ethereum",
       });
@@ -744,7 +744,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return true for correct trc20 addresses for unknown tokens, when chainType is provided", function () {
+    it("should return true for correct trc20 addresses for unknown tokens, when chainType is provided", () => {
       valid("TFEkshkSXo8yMe8vcA6P77XmiLfstNWHyT", "unknown trc20", {
         chainType: "tron",
         networkType: "prod",
@@ -758,24 +758,24 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return true for correct pivx addresses", function () {
+    it("should return true for correct pivx addresses", () => {
       valid("DJXFW9oJJBUX7QKrG6GKvmTs63MYKzwtpZ", "pivx");
       valid("DEaYb8EHQgyKvX6VXDS3DZQautJrHBmK3T", "pivx");
       valid("DDeCGR3QSgqsBxVR23bJvteiyYE34ZmxAc", "pivx");
       valid("DSqQM8DPpBHHoZXHgRdwmaf6hZPEoZcFkh", "pivx");
     });
 
-    it("should return true for correct solarcoin addresses", function () {
+    it("should return true for correct solarcoin addresses", () => {
       valid("8VxVLzwB26E2YZZ82o1NcQe96QSM2z6GwW", "slr");
       valid("8YW5qcTjeyqX5kESsqu2BUdXiedgssegtQ", "SolarCoin");
     });
 
-    it("should return true for correct tap addresses", function () {
+    it("should return true for correct tap addresses", () => {
       valid("0x9ec7d40d627ec59981446a6e5acb33d51afcaf8a", "xtp");
       valid("0x9ec7d40d627ec59981446a6e5acb33d51afcaf8a", "tap");
     });
 
-    it("should return true for correct tether addresses", function () {
+    it("should return true for correct tether addresses", () => {
       valid("3MbYQMMmSkC3AgWkj9FMo5LsPTW1zBTwXL", "usdt");
       valid("1KdXaqcBeoMAFVAPwTmYvDbEq6RnvNPF6J", "tether");
       valid("0xF6f6ebAf5D78F4c93Baf856d3005B7395CCC272e", "usdt");
@@ -802,7 +802,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should verify SPL addresses", function () {
+    it("should verify SPL addresses", () => {
       valid("69UwBV4LPg7hHUS5JXiXyfgVnESmDKe8KJppsLj8pRU", "usdc", {
         chainType: "solana",
         networkType: "prod",
@@ -817,7 +817,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should verify SPL addresses for unknown tokens", function () {
+    it("should verify SPL addresses for unknown tokens", () => {
       valid("69UwBV4LPg7hHUS5JXiXyfgVnESmDKe8KJppsLj8pRU", "mobile", {
         chainType: "solana",
         networkType: "prod",
@@ -832,7 +832,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return false for incorrect tether addresses", function () {
+    it("should return false for incorrect tether addresses", () => {
       invalid("1KdXaqcBeoMAFVAPwTmYvDbEq6RnvNPF6Jp", "tether");
       invalid("0xF6f6ebAf5D78F4c93Baf856d3005B7395CCC272eT", "usdt");
       invalid("3MbYQMMmSkC3AgWkj9FMo5LsPTW1zBTwXL", "usdt", {
@@ -857,12 +857,12 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return true for correct expanse addresses", function () {
+    it("should return true for correct expanse addresses", () => {
       valid("0xbab463743603a253bdf1f84975b1a9517505ae05", "exp");
       valid("0x5d0777cb5d6977873904864c6ab531f4b3261f0b", "expanse");
     });
 
-    it("should return true for correct waves addresses", function () {
+    it("should return true for correct waves addresses", () => {
       valid("3P93mVrYnQ4ahaRMYwA2BeWY32eDxTpLVEs", "waves");
       valid("3P4eeU7v1LMHQFwwT2GW9W99c6vZyytHajj", "waves");
 
@@ -870,7 +870,7 @@ describe("WAValidator.validate()", function () {
       valid("3My3KZgFQ3CrVHgz6vGRt8687sH4oAA1qp8", "waves", "testnet");
     });
 
-    it("should return true for correct nano addresses", function () {
+    it("should return true for correct nano addresses", () => {
       valid(
         "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",
         "nano",
@@ -913,7 +913,7 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return true for correct siacoin addresses", function () {
+    it("should return true for correct siacoin addresses", () => {
       valid(
         "a9b01c85163638682b170d82de02b8bb99ba86092e9ab1b0d25111284fe618e93456915820f1",
         "siacoin",
@@ -932,7 +932,7 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return true for correct loki addresses", function () {
+    it("should return true for correct loki addresses", () => {
       // public
       valid(
         "L63ymg8cb5aRz1PhXrEQ22PWw9KBhBS8rMsgqbABhTGFfh53U3Rc2iWCJpCPsHZT5hfyt7fPQa612a5Z1tBnGYEA9h6YHnn",
@@ -958,24 +958,24 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return true for correct lbry addresses", function () {
+    it("should return true for correct lbry addresses", () => {
       valid("bDb6NmobyDVeNGpizWQQBZkYjKCRQBdKdG", "LBC");
       valid("bTFXPcV3a8iVDezogvHTHezWZ1mZGWpPDc", "lbc");
       valid("bK2uEVn6UuwjCTUZ1Dfj5HhWYi9BtqZDDm", "lbc");
       valid("bNEMVqeUZUqTrYUxud5ehnUhtTAiWDXQ5e", "lbc");
     });
 
-    it("should return true for correct trx addresses", function () {
+    it("should return true for correct trx addresses", () => {
       valid("TNDzfERDpxLDS2w1q6yaFC7pzqaSQ3Bg3r", "trx");
       valid("TNDzfERDpxLDS2w1q6yaFC7pzqaSQ3Bg3r", "trx", "testnet");
     });
 
-    it("should return true for correct nem addresses", function () {
+    it("should return true for correct nem addresses", () => {
       valid("NBZMQO7ZPBYNBDUR7F75MAKA2S3DHDCIFG775N3D", "xem");
       valid("TDWTRGT6GVWCV7GRWFNI45S53PGOJBKNUF3GE6PB", "xem", "testnet");
     });
 
-    it("should return true for correct bsv addresses", function () {
+    it("should return true for correct bsv addresses", () => {
       valid("qzwryn9fxnpqkf7zt878tp2g9cg8kpl65qh2ml0w0r", "bsv");
       valid("qp65yngy5uds4wxtrkynptal4f76qzmrh52pa3mpaf", "bsv");
       valid("bitcoincash:qq4v32mtagxac29my6gwj6fd4tmqg8rysu23dax807", "bsv");
@@ -987,7 +987,7 @@ describe("WAValidator.validate()", function () {
       valid("1DrNXqCj2B8FKyx66RAWDkiEJhw2yrvhT3", "bsv");
     });
 
-    it("should return true for correct stellar addresses", function () {
+    it("should return true for correct stellar addresses", () => {
       valid(
         "GBBM6BKZPEHWYO3E3YKREDPQXMS4VK35YLNU7NFBRI26RAN7GI5POFBB",
         "stellar",
@@ -1030,7 +1030,7 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return true for correct xtz(tezos) address", function () {
+    it("should return true for correct xtz(tezos) address", () => {
       valid("tz1Lhf4J9Qxoe3DZ2nfe8FGDnvVj7oKjnMY6", "xtz");
       valid("tz1PyxsQ7xVTa5J7gtBeT7pST5Zi5nk5GSjg", "xtz");
       valid("tz1LcuQHNVQEWP2fZjk1QYZGNrfLDwrT3SyZ", "xtz");
@@ -1040,20 +1040,20 @@ describe("WAValidator.validate()", function () {
       valid("KT1EM2LvxxFGB3Svh9p9HCP2jEEYyHjABMbK", "xtz");
     });
 
-    it("should return true for correct eos addresses", function () {
+    it("should return true for correct eos addresses", () => {
       valid("bittrexacct1", "eos");
       valid("binancecleos", "eos");
       valid("123456789012", "eos");
       valid("12345678.012", "eos");
     });
 
-    it("should return true for correct vet addresses", function () {
+    it("should return true for correct vet addresses", () => {
       valid("0xa7E43b445cF68CAa143a884AF673121447F29EAe", "vet");
       valid("0x46B8aABa5Eaa84Dc074c350eD57D8b3c35B90E09", "VeChain");
       valid("0x6d57D1697277C9Bb01A5265EC00558A639CA308A", "VET");
     });
 
-    it("should return true for correct algo addresses", function () {
+    it("should return true for correct algo addresses", () => {
       valid(
         "GONISIUAYDOMHM7VURRAAAP5H6OAWRRBCPXEIOZO3QI7TZKR5GTAQ7WK7Y",
         "algo",
@@ -1072,7 +1072,7 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return true for correct dot addresses", function () {
+    it("should return true for correct dot addresses", () => {
       valid("1iQPKJmghHbrRhUiMt2cNEuxYbR6S9vYtJKqYvE4PNR9WDB", "dot");
       valid("1FRMM8PEiWXYax7rpS6X4XZX1aAAxSWx1CrKTyrVYhV24fg", "dot");
       valid("5CK8D1sKNwF473wbuBP6NuhQfPaWUetNsWUNAAzVwTfxqjfr", "dot");
@@ -1081,7 +1081,7 @@ describe("WAValidator.validate()", function () {
       valid("CxDDSH8gS7jecsxaRL9Txf8H5kqesLXAEAEgp76Yz632J9M", "dot");
     });
 
-    it("should return true for correct cro addresses", function () {
+    it("should return true for correct cro addresses", () => {
       valid("cro1yjjlx5qsrj5rxn5xtd5rkm6dcqzlchxkrvsmg6", "cro");
       valid("cro1mwdzawjd27uku0cqf8zngxfcycd292u353xe7v", "cro");
       valid("tcro1mz5rdtf9wufwkh8te2zww7twtmna6rhl2qlhlc", "cro", "testnet");
@@ -1093,7 +1093,7 @@ describe("WAValidator.validate()", function () {
       invalid("cromwdzawjd27uku0cqf8zngxfcycd292u353xe7v1", "cro");
     });
 
-    it("should return true for correct monero addresses", function () {
+    it("should return true for correct monero addresses", () => {
       valid(
         "47zQ5LAivg6hNCgijXSEFVLX7mke1bgM6YGLFaANDoJbgXDymcAAZvvMNt2PmMpqEe5qRy2zyfMYXdwpmdyitiFh84xnPG2",
         "monero",
@@ -1133,34 +1133,34 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return true for correct erc20 addresses", function () {
+    it("should return true for correct erc20 addresses", () => {
       valid("0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB", "game");
       valid("0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb", "game");
     });
 
-    it("should return true for correct pivx addresses", function () {
+    it("should return true for correct pivx addresses", () => {
       valid("DJXFW9oJJBUX7QKrG6GKvmTs63MYKzwtpZ", "pivx");
       valid("DEaYb8EHQgyKvX6VXDS3DZQautJrHBmK3T", "pivx");
       valid("DDeCGR3QSgqsBxVR23bJvteiyYE34ZmxAc", "pivx");
       valid("DSqQM8DPpBHHoZXHgRdwmaf6hZPEoZcFkh", "pivx");
     });
 
-    it("should return true for correct solarcoin addresses", function () {
+    it("should return true for correct solarcoin addresses", () => {
       valid("8VxVLzwB26E2YZZ82o1NcQe96QSM2z6GwW", "slr");
       valid("8YW5qcTjeyqX5kESsqu2BUdXiedgssegtQ", "SolarCoin");
     });
 
-    it("should return true for correct tether addresses", function () {
+    it("should return true for correct tether addresses", () => {
       valid("3MbYQMMmSkC3AgWkj9FMo5LsPTW1zBTwXL", "usdt");
       valid("1KdXaqcBeoMAFVAPwTmYvDbEq6RnvNPF6J", "tether");
     });
 
-    it("should return true for correct expanse addresses", function () {
+    it("should return true for correct expanse addresses", () => {
       valid("0xbab463743603a253bdf1f84975b1a9517505ae05", "exp");
       valid("0x5d0777cb5d6977873904864c6ab531f4b3261f0b", "expanse");
     });
 
-    it("should return true for correct waves addresses", function () {
+    it("should return true for correct waves addresses", () => {
       valid("3P93mVrYnQ4ahaRMYwA2BeWY32eDxTpLVEs", "waves");
       valid("3P4eeU7v1LMHQFwwT2GW9W99c6vZyytHajj", "waves");
 
@@ -1168,7 +1168,7 @@ describe("WAValidator.validate()", function () {
       valid("3My3KZgFQ3CrVHgz6vGRt8687sH4oAA1qp8", "waves", "testnet");
     });
 
-    it("should return true for correct hbar addresses", function () {
+    it("should return true for correct hbar addresses", () => {
       valid("0.0.12345", "hbar");
       valid("0.0.987654321", "hbar");
       valid("0.1.54321", "hbar");
@@ -1179,7 +1179,7 @@ describe("WAValidator.validate()", function () {
       valid("10.5.987", "hedera");
     });
 
-    it("should return true for correct nano addresses", function () {
+    it("should return true for correct nano addresses", () => {
       valid(
         "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",
         "nano",
@@ -1222,7 +1222,7 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return true for correct Flare addresses", function () {
+    it("should return true for correct Flare addresses", () => {
       valid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "flare");
       valid("0xa00354276d2fC74ee91e37D085d35748613f4748", "flare");
       valid("0xAff4d6793F584a473348EbA058deb8caad77a288", "FLR");
@@ -1247,7 +1247,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return true for correct siacoin addresses", function () {
+    it("should return true for correct siacoin addresses", () => {
       valid(
         "a9b01c85163638682b170d82de02b8bb99ba86092e9ab1b0d25111284fe618e93456915820f1",
         "siacoin",
@@ -1266,7 +1266,7 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return true for correct loki addresses", function () {
+    it("should return true for correct loki addresses", () => {
       // public
       valid(
         "L63ymg8cb5aRz1PhXrEQ22PWw9KBhBS8rMsgqbABhTGFfh53U3Rc2iWCJpCPsHZT5hfyt7fPQa612a5Z1tBnGYEA9h6YHnn",
@@ -1292,24 +1292,24 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return true for correct lbry addresses", function () {
+    it("should return true for correct lbry addresses", () => {
       valid("bNEMVqeUZUqTrYUxud5ehnUhtTAiWDXQ5e", "lbc");
       valid("bDb6NmobyDVeNGpizWQQBZkYjKCRQBdKdG", "LBC");
       valid("bTFXPcV3a8iVDezogvHTHezWZ1mZGWpPDc", "lbc");
       valid("bK2uEVn6UuwjCTUZ1Dfj5HhWYi9BtqZDDm", "LBRY Credits");
     });
 
-    it("should return true for correct trx addresses", function () {
+    it("should return true for correct trx addresses", () => {
       valid("TNDzfERDpxLDS2w1q6yaFC7pzqaSQ3Bg3r", "trx");
       valid("TNDzfERDpxLDS2w1q6yaFC7pzqaSQ3Bg3r", "trx", "testnet");
     });
 
-    it("should return true for correct nem addresses", function () {
+    it("should return true for correct nem addresses", () => {
       valid("NBZMQO7ZPBYNBDUR7F75MAKA2S3DHDCIFG775N3D", "xem");
       valid("TDWTRGT6GVWCV7GRWFNI45S53PGOJBKNUF3GE6PB", "xem", "testnet");
     });
 
-    it("should return true for correct bsv addresses", function () {
+    it("should return true for correct bsv addresses", () => {
       valid("qzwryn9fxnpqkf7zt878tp2g9cg8kpl65qh2ml0w0r", "bsv");
       valid("qp65yngy5uds4wxtrkynptal4f76qzmrh52pa3mpaf", "bsv");
       valid("bitcoincash:qq4v32mtagxac29my6gwj6fd4tmqg8rysu23dax807", "bsv");
@@ -1321,7 +1321,7 @@ describe("WAValidator.validate()", function () {
       valid("1DrNXqCj2B8FKyx66RAWDkiEJhw2yrvhT3", "bsv");
     });
 
-    it("should return true for correct stellar addresses", function () {
+    it("should return true for correct stellar addresses", () => {
       valid(
         "GBBM6BKZPEHWYO3E3YKREDPQXMS4VK35YLNU7NFBRI26RAN7GI5POFBB",
         "stellar",
@@ -1366,7 +1366,7 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return true for correct solana addresses", function () {
+    it("should return true for correct solana addresses", () => {
       valid("833XorXTTx5iya5B3Tr6iqEs9GbRuvVfwyLCP2vpdzhq", "solana");
       valid("6ZRCB7AAqGre6c72PRz3MHLC73VMYvJ8bi9KHf1HFpNk", "sol");
       valid("HgyXhqapicB8zoyyFQ23oUwwFrBACDyDc7bqUuvnEELM", "sol");
@@ -1376,7 +1376,7 @@ describe("WAValidator.validate()", function () {
       valid("G4qGCGF4vWGPzYi2pxc2Djvgv3j8NiWaHQMgTVebCX6W", "sol");
     });
 
-    it("should return true for correct bonk addresses", function () {
+    it("should return true for correct bonk addresses", () => {
       valid("833XorXTTx5iya5B3Tr6iqEs9GbRuvVfwyLCP2vpdzhq", "bonk");
       valid("6ZRCB7AAqGre6c72PRz3MHLC73VMYvJ8bi9KHf1HFpNk", "BONK");
       valid("HgyXhqapicB8zoyyFQ23oUwwFrBACDyDc7bqUuvnEELM", "BONK");
@@ -1387,7 +1387,7 @@ describe("WAValidator.validate()", function () {
     });
   });
 
-  describe("invalid results", function () {
+  describe("invalid results", () => {
     function commonTests(currency) {
       commonTestsWithoutBase58Addresses(currency);
       invalid("1A1zP1ePQGefi2DMPTifTL5SLmv7DivfNa", currency); //reject invalid address
@@ -1404,7 +1404,7 @@ describe("WAValidator.validate()", function () {
       invalid("bd839e4f6fadb293ba580df5dea7814399989983", currency, "testnet"); //reject transaction id's
     }
 
-    it("should return false for incorrect avalanche addresses", function () {
+    it("should return false for incorrect avalanche addresses", () => {
       commonTests("avalanche");
 
       // solana address
@@ -1413,7 +1413,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return false for incorrect sonic addresses", function () {
+    it("should return false for incorrect sonic addresses", () => {
       commonTests("sonic");
 
       // solana address
@@ -1422,7 +1422,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return false for incorrect flare addresses", function () {
+    it("should return false for incorrect flare addresses", () => {
       commonTests("flare");
 
       // solana address
@@ -1431,7 +1431,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return false for incorrect binance addresses", function () {
+    it("should return false for incorrect binance addresses", () => {
       commonTests("bnb");
 
       // solana address
@@ -1440,7 +1440,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return false for incorrect binancesmartchain addresses", function () {
+    it("should return false for incorrect binancesmartchain addresses", () => {
       commonTests("bnb");
 
       // solana address
@@ -1449,7 +1449,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return false for incorrect solana addresses", function () {
+    it("should return false for incorrect solana addresses", () => {
       commonTests("solana");
 
       // bch address
@@ -1458,7 +1458,7 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return false for incorrect arbitrum addresses", function () {
+    it("should return false for incorrect arbitrum addresses", () => {
       commonTests("arbitrum");
 
       // bch address
@@ -1467,11 +1467,11 @@ describe("WAValidator.validate()", function () {
       });
     });
 
-    it("should return false for incorrect bitcoin addresses", function () {
+    it("should return false for incorrect bitcoin addresses", () => {
       commonTests("bitcoin");
     });
 
-    it("should return false for incorrect bitcoincash addresses", function () {
+    it("should return false for incorrect bitcoincash addresses", () => {
       commonTests("bitcoincash");
 
       // bch addresses
@@ -1482,67 +1482,67 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return false for incorrect litecoin addresses", function () {
+    it("should return false for incorrect litecoin addresses", () => {
       commonTests("litecoin");
     });
 
-    it("should return false for incorrect peercoin addresses", function () {
+    it("should return false for incorrect peercoin addresses", () => {
       commonTests("peercoin");
     });
 
-    it("should return false for incorrect dogecoin addresses", function () {
+    it("should return false for incorrect dogecoin addresses", () => {
       commonTests("dogecoin");
     });
 
-    it("should return false for incorrect beavercoin addresses", function () {
+    it("should return false for incorrect beavercoin addresses", () => {
       commonTests("beavercoin");
     });
 
-    it("should return false for incorrect freicoin addresses", function () {
+    it("should return false for incorrect freicoin addresses", () => {
       commonTests("freicoin");
     });
 
-    it("should return false for incorrect protoshares addresses", function () {
+    it("should return false for incorrect protoshares addresses", () => {
       commonTests("protoshares");
     });
 
-    it("should return false for incorrect megacoin addresses", function () {
+    it("should return false for incorrect megacoin addresses", () => {
       commonTests("megacoin");
     });
 
-    it("should return false for incorrect primecoin addresses", function () {
+    it("should return false for incorrect primecoin addresses", () => {
       commonTests("primecoin");
     });
 
-    it("should return false for incorrect auroracoin addresses", function () {
+    it("should return false for incorrect auroracoin addresses", () => {
       commonTests("auroracoin");
     });
 
-    it("should return false for incorrect namecoin addresses", function () {
+    it("should return false for incorrect namecoin addresses", () => {
       commonTests("namecoin");
     });
 
-    it("should return false for incorrect biocoin addresses", function () {
+    it("should return false for incorrect biocoin addresses", () => {
       commonTests("biocoin");
     });
 
-    it("should return false for incorrect garlicoin addresses", function () {
+    it("should return false for incorrect garlicoin addresses", () => {
       commonTests("garlicoin");
     });
 
-    it("should return false for incorrect vertcoin addresses", function () {
+    it("should return false for incorrect vertcoin addresses", () => {
       commonTests("vertcoin");
     });
 
-    it("should return false for incorrect bitcoingold addresses", function () {
+    it("should return false for incorrect bitcoingold addresses", () => {
       commonTests("bitcoingold");
     });
 
-    it("should return false for incorrect decred addresses", function () {
+    it("should return false for incorrect decred addresses", () => {
       commonTests("decred");
     });
 
-    it("should return false for incorrect erc20 addresses", function () {
+    it("should return false for incorrect erc20 addresses", () => {
       commonTests("game");
       commonTestsWithoutBase58Addresses("usdc");
 
@@ -1551,34 +1551,34 @@ describe("WAValidator.validate()", function () {
       invalid("GYxQMVzP6YpzX59QNRYqmJeHNtUMYSZPri", "game");
     });
 
-    it("should return false for incorrect solarcoin addresses", function () {
+    it("should return false for incorrect solarcoin addresses", () => {
       commonTests("slr");
     });
 
-    it("should return false for incorrect tether addresses", function () {
+    it("should return false for incorrect tether addresses", () => {
       commonTests("usdt");
     });
 
-    it("should return false for incorrect expanse addresses", function () {
+    it("should return false for incorrect expanse addresses", () => {
       commonTests("exp");
     });
 
-    it("should return false for incorrect usdt addresses", function () {
+    it("should return false for incorrect usdt addresses", () => {
       commonTests("usdt");
     });
 
-    it("should return false for incorrect bankex addresses", function () {
+    it("should return false for incorrect bankex addresses", () => {
       invalid("1SQHtwR5oJRKLfiWQ2APsAd9miUc4k2ez", "bankex");
       invalid("116CGDLddrZhMrTwhCVJXtXQpxygTT1kHd", "BKX");
       invalid("mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef", "bankex", "testnet");
       invalid("mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef", "BKX", "testnet");
     });
 
-    it("should return false for incorrect digibyte addresses", function () {
+    it("should return false for incorrect digibyte addresses", () => {
       commonTests("digibyte");
     });
 
-    it("should return false for incorrect eip55 addresses", function () {
+    it("should return false for incorrect eip55 addresses", () => {
       invalid("6xAff4d6793F584a473348EbA058deb8caad77a288", "ethereum");
       invalid("0x02fcd51aAbB814FfFe17908fbc888A8975D839A5", "ethereum");
       invalid("0XD1220A0CF47C7B9BE7A2E6BA89F429762E7B9ADB", "ethereum");
@@ -1590,92 +1590,92 @@ describe("WAValidator.validate()", function () {
       invalid("0x02fcd51aAbB814FfFe17908fbc888A8975D839A5", "callisto");
     });
 
-    it("should return false for incorrect ripple addresses", function () {
+    it("should return false for incorrect ripple addresses", () => {
       invalid("rG1QQv2nh2gr7RCZ1P8YYcBUKCCN633jCN", "ripple");
       invalid("rDTXLQ7ZKZVKz33zJbHjgVShjsBnqMBhMN", "XRP");
       invalid("6xAff4d6793F584a473348EbA058deb8ca", "ripple");
       invalid("DJ53hTyLBdZp2wMi5BsCS3rtEL1ioYUkva", "ripple");
     });
 
-    it("should return false for incorrect dash addresses", function () {
+    it("should return false for incorrect dash addresses", () => {
       commonTests("dash");
     });
 
-    it("should return false for incorrect neo addresses", function () {
+    it("should return false for incorrect neo addresses", () => {
       commonTests("neo");
       invalid("AR4QmqYENiZAD6oXe7ftm6eDcwtHk7rVTa", "neo");
       invalid("AKDVzYGLczmykdtRaejgvWeZrvdkVEvQ10", "NEO");
     });
 
-    it("should return false for incorrect qtum addresses", function () {
+    it("should return false for incorrect qtum addresses", () => {
       commonTests("qtum");
       invalid("QNPhBbVhDghASxcUh2vHotQUgNeLRFTcfb", "qtum");
       invalid("QOPhBbVhDghASxcUh2vHotQUgNeLRFTcfa", "QTUM");
     });
 
-    it("should return false for incorrect votecoin addresses", function () {
+    it("should return false for incorrect votecoin addresses", () => {
       commonTests("votecoin");
       invalid("t1Y9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq", "votecoin");
       invalid("t3Yz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", "VOT");
       invalid("t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "votecoin", "testnet");
     });
 
-    it("should return false for incorrect bitcoinz addresses", function () {
+    it("should return false for incorrect bitcoinz addresses", () => {
       commonTests("bitcoinz");
       invalid("t1Y9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq", "bitcoinz");
       invalid("t3Yz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", "BTCZ");
       invalid("t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "bitcoinz", "testnet");
     });
 
-    it("should return false for incorrect zclassic addresses", function () {
+    it("should return false for incorrect zclassic addresses", () => {
       commonTests("zclassic");
       invalid("t1Y9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq", "zclassic");
       invalid("t3Yz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", "ZCL");
       invalid("t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "zclassic", "testnet");
     });
 
-    it("should return false for incorrect hush addresses", function () {
+    it("should return false for incorrect hush addresses", () => {
       invalid("t1Y9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq", "hush");
       invalid("t3Yz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", "HUSH");
       invalid("t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "hush", "testnet");
     });
 
-    it("should return false for incorrect zcash addresses", function () {
+    it("should return false for incorrect zcash addresses", () => {
       commonTests("zcash");
       invalid("t1Y9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq", "zcash");
       invalid("t3Yz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", "ZEC");
       invalid("t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "zcash", "testnet");
     });
 
-    it("should return false for incorrect bitcoinprivate addresses", function () {
+    it("should return false for incorrect bitcoinprivate addresses", () => {
       commonTests("bitcoinprivate");
       invalid("b1Y4XXPFhwMb1SP33yhzn3h9qWXjujkgep4", "bitcoinprivate");
       //invalid('bx....', 'BTCP');
       //invalid('nx....', 'bitcoinprivate', 'testnet');
     });
 
-    it("should return false for incorrect snowgem addresses", function () {
+    it("should return false for incorrect snowgem addresses", () => {
       commonTests("snowgem");
       invalid("s1Yx7WBkjB4UH6qQjPp6Ysmtr1C1JiTK2Yw", "snowgem");
       invalid("s3Y27MhkBRt3ha2UuxhjXaYF4DCnttTMnL1", "SNG");
       invalid("t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "snowgem", "testnet");
     });
 
-    it("should return false for incorrect zencash addresses", function () {
+    it("should return false for incorrect zencash addresses", () => {
       commonTests("zencash");
       invalid("znYiGGfYRepxkBjXYvA2kFrXiC351i9ta4z", "zencash");
       invalid("zsYEdGnZCQ9G86LZFtbynMn1hYTVhn6eYCL", "ZEN");
       invalid("ztYWMDLWjbruCJxKmmfAZiT6QAQdiv5F291", "zencash", "testnet");
     });
 
-    it("should return false for incorrect komodo addresses", function () {
+    it("should return false for incorrect komodo addresses", () => {
       commonTests("komodo");
       invalid("R9Y5HirAzqDcWrWGiJEL115dpV3QB3hobH", "komodo");
       invalid("RAYj2KKVUohTu3hVdNJ4U6hQi7TNawpacH", "KMD");
       //invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'komodo', 'testnet');
     });
 
-    it("should return false for incorrect cardano addresses", function () {
+    it("should return false for incorrect cardano addresses", () => {
       commonTests("cardano");
       invalid(
         "Ae2tdPwUPEYxYNJw1He1esdZYvjmr4NtPzUsGTiqL9zd8ohjZYQcwu6lom7",
@@ -1707,7 +1707,7 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return false for incorrect monero addresses", function () {
+    it("should return false for incorrect monero addresses", () => {
       commonTests("monero");
       invalid(
         "4AWygwA3hHNE4e4Yr9PtRWJiorXTjZkCi57g4ExYzfXDFFQ8DRFEFyui1dLqVknpqQjGUBdTMbgaFAZaDbrVHdk3GAKBZ3E",
@@ -1734,7 +1734,7 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return false for incorrect waves addresses", function () {
+    it("should return false for incorrect waves addresses", () => {
       commonTests("waves");
       invalid("3P93mVrYnQ4ahaRMYwA2BeWY32eDxTpLVEs1", "waves");
       invalid("3P4eeU7v1LMHQFwwT2GW9W99c6vZyytHaj", "waves");
@@ -1744,7 +1744,7 @@ describe("WAValidator.validate()", function () {
       invalid("3My3KZgFQ3CrVHgz6vGRt8787sH4oAA1qp8", "waves", "testnet");
     });
 
-    it("should return false for incorrect nano addresses", function () {
+    it("should return false for incorrect nano addresses", () => {
       commonTests("nano");
       invalid(
         "xrb_1f5e4w33ndqbkx4bw5jtp13kp5xghebfxcmw9hdt1f7goid1s4373w6tjdgu",
@@ -1764,7 +1764,7 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return false for incorrect siacoin addresses", function () {
+    it("should return false for incorrect siacoin addresses", () => {
       commonTests("siacoin");
       invalid(
         "ffe1308c044ade30392a0cdc1fd5a4dbe94f9616a95faf888ed36123d9e711557aa497530372",
@@ -1772,14 +1772,14 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return false for incorrect lbry addresses", function () {
+    it("should return false for incorrect lbry addresses", () => {
       commonTests("lbc");
       invalid(
         "ffe1308c044ade30392a0cdc1fd5a4dbe94f9616a95faf888ed36123d9e711557aa497530372",
       );
     });
 
-    it("should return false for incorrect tron addresses", function () {
+    it("should return false for incorrect tron addresses", () => {
       commonTests("trx");
       invalid(
         "xrb_1111111112111111111111111111111111111111111111111111hifc8npp",
@@ -1789,7 +1789,7 @@ describe("WAValidator.validate()", function () {
       invalid("27bLJCYjbH6MT8DBF9xcrK6yZnm43vx7MNQ", "trx");
     });
 
-    it("should return false for incorrect nem addresses", function () {
+    it("should return false for incorrect nem addresses", () => {
       commonTests("nem");
       invalid(
         "xrb_1111111112111111111111111111111111111111111111111111hifc8npp",
@@ -1801,7 +1801,7 @@ describe("WAValidator.validate()", function () {
       invalid("3My3KZgFQ3CrVHgz6vGRt8787sH4oAA1qp8", "nem", "testnet");
     });
 
-    it("should return false for incorrect bsv addresses", function () {
+    it("should return false for incorrect bsv addresses", () => {
       commonTests("bsv");
       invalid(
         "xrb_1111111112111111111111111111111111111111111111111111hifc8npp",
@@ -1817,7 +1817,7 @@ describe("WAValidator.validate()", function () {
       invalid("qra607y4wnkmnpy3wcmrxmltzkrxywcq85c7watpdx09", "bsv");
     });
 
-    it("should return false for incorrect stellar addresses", function () {
+    it("should return false for incorrect stellar addresses", () => {
       commonTests("stellar");
       invalid(
         "SBGWKM3CD4IL47QN6X54N6Y33T3JDNVI6AIJ6CD5IM47HG3IG4O36XCU",
@@ -1855,7 +1855,7 @@ describe("WAValidator.validate()", function () {
       invalid("g4VPBPrHZkfE8CsjuG2S4yBQNd455UWmk", "stellar");
     });
 
-    it("should return false for incorrect xtz(tezos) address", function () {
+    it("should return false for incorrect xtz(tezos) address", () => {
       commonTests("xtz");
       invalid(
         "SBGWKM3CD4IL47QN6X54N6Y33T3JDNVI6AIJ6CD5IM47HG3IG4O36XCU",
@@ -1875,14 +1875,14 @@ describe("WAValidator.validate()", function () {
       invalid("KT1E2LvxxFGB3Svh9p9HCP2jEEYyHjABMbK", "xtz");
     });
 
-    it("should return false for incorrect eos addresses", function () {
+    it("should return false for incorrect eos addresses", () => {
       commonTests("eos");
       invalid("1234567890123", "eos");
       invalid("12345678901", "eos");
       invalid("12345678901@", "eos");
     });
 
-    it("should return false for incorrect eos addresses", function () {
+    it("should return false for incorrect eos addresses", () => {
       commonTests("hedera");
       commonTests("hbar");
       invalid("0.0.12345-abcxyz", "hbar"); //checksum address not supported
@@ -1891,7 +1891,7 @@ describe("WAValidator.validate()", function () {
       invalid("hbar123", "hbar");
     });
 
-    it("should return false for incorrect solana addresses", function () {
+    it("should return false for incorrect solana addresses", () => {
       invalid("833XQoXTx05iya53Tr6iqEs9GbRuvVfwyLCP2vpdzhq", "solana");
       invalid("833XorXTTx5iya5B3Tr6iqEs9GbRuvVfwyLCP2vpdz", "solana");
       invalid(
@@ -1909,7 +1909,7 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return false for incorrect solana addresses for unknown tokens, even if chainType is provided", function () {
+    it("should return false for incorrect solana addresses for unknown tokens, even if chainType is provided", () => {
       invalid("833XQoXTx05iya53Tr6iqEs9GbRuvVfwyLCP2vpdzhq", "mobile", {
         chainType: "solana",
       });
@@ -1933,7 +1933,7 @@ describe("WAValidator.validate()", function () {
       );
     });
 
-    it("should return false for incorrect erc20 addresses for unknown tokens, even if chainType is provided", function () {
+    it("should return false for incorrect erc20 addresses for unknown tokens, even if chainType is provided", () => {
       invalid("833XorXTTx5iya5B3Tr6iqEs9GbRuvVfwyLCP2vpdz", "eurc", {
         chainType: "ethereum",
       });
@@ -1941,7 +1941,7 @@ describe("WAValidator.validate()", function () {
       invalid("1234567890123", "eurc", { chainType: "Ethereum" });
     });
 
-    it("should return false for incorrect trc20 addresses for unknown tokens, even if chainType is provided", function () {
+    it("should return false for incorrect trc20 addresses for unknown tokens, even if chainType is provided", () => {
       invalid("TNDzfERDpxLDS2w1q6yaFC7pzqaSQ3Bg31", "unknown trc20", {
         chainType: "TRON",
       });
@@ -1957,7 +1957,7 @@ describe("WAValidator.validate()", function () {
   });
 });
 
-describe("invalid results", function () {
+describe("invalid results", () => {
   function commonTests(currency) {
     invalid("", currency); //reject blank
     invalid("%%@", currency); //reject invalid base58 string
@@ -1970,102 +1970,102 @@ describe("invalid results", function () {
     invalid("bd839e4f6fadb293ba580df5dea7814399989983", currency, "testnet"); //reject transaction id's
   }
 
-  it("should return false for incorrect bitcoin addresses", function () {
+  it("should return false for incorrect bitcoin addresses", () => {
     commonTests("bitcoin");
   });
 
-  it("should return false for incorrect bitcoincash addresses", function () {
+  it("should return false for incorrect bitcoincash addresses", () => {
     commonTests("bitcoincash");
   });
 
-  it("should return false for incorrect litecoin addresses", function () {
+  it("should return false for incorrect litecoin addresses", () => {
     commonTests("litecoin");
   });
 
-  it("should return false for incorrect peercoin addresses", function () {
+  it("should return false for incorrect peercoin addresses", () => {
     commonTests("peercoin");
   });
 
-  it("should return false for incorrect dogecoin addresses", function () {
+  it("should return false for incorrect dogecoin addresses", () => {
     commonTests("dogecoin");
   });
 
-  it("should return false for incorrect beavercoin addresses", function () {
+  it("should return false for incorrect beavercoin addresses", () => {
     commonTests("beavercoin");
   });
 
-  it("should return false for incorrect freicoin addresses", function () {
+  it("should return false for incorrect freicoin addresses", () => {
     commonTests("freicoin");
   });
 
-  it("should return false for incorrect protoshares addresses", function () {
+  it("should return false for incorrect protoshares addresses", () => {
     commonTests("protoshares");
   });
 
-  it("should return false for incorrect megacoin addresses", function () {
+  it("should return false for incorrect megacoin addresses", () => {
     commonTests("megacoin");
   });
 
-  it("should return false for incorrect primecoin addresses", function () {
+  it("should return false for incorrect primecoin addresses", () => {
     commonTests("primecoin");
   });
 
-  it("should return false for incorrect auroracoin addresses", function () {
+  it("should return false for incorrect auroracoin addresses", () => {
     commonTests("auroracoin");
   });
 
-  it("should return false for incorrect namecoin addresses", function () {
+  it("should return false for incorrect namecoin addresses", () => {
     commonTests("namecoin");
   });
 
-  it("should return false for incorrect biocoin addresses", function () {
+  it("should return false for incorrect biocoin addresses", () => {
     commonTests("biocoin");
   });
 
-  it("should return false for incorrect garlicoin addresses", function () {
+  it("should return false for incorrect garlicoin addresses", () => {
     commonTests("garlicoin");
   });
 
-  it("should return false for incorrect vertcoin addresses", function () {
+  it("should return false for incorrect vertcoin addresses", () => {
     commonTests("vertcoin");
   });
 
-  it("should return false for incorrect bitcoingold addresses", function () {
+  it("should return false for incorrect bitcoingold addresses", () => {
     commonTests("bitcoingold");
   });
 
-  it("should return false for incorrect decred addresses", function () {
+  it("should return false for incorrect decred addresses", () => {
     commonTests("decred");
   });
 
-  it("should return false for incorrect solarcoin addresses", function () {
+  it("should return false for incorrect solarcoin addresses", () => {
     commonTests("slr");
   });
 
-  it("should return false for incorrect tether addresses", function () {
+  it("should return false for incorrect tether addresses", () => {
     commonTests("usdt");
   });
 
-  it("should return false for incorrect expanse addresses", function () {
+  it("should return false for incorrect expanse addresses", () => {
     commonTests("exp");
   });
 
-  it("should return false for incorrect usdt addresses", function () {
+  it("should return false for incorrect usdt addresses", () => {
     commonTests("usdt");
   });
 
-  it("should return false for incorrect bankex addresses", function () {
+  it("should return false for incorrect bankex addresses", () => {
     invalid("1SQHtwR5oJRKLfiWQ2APsAd9miUc4k2ez", "bankex");
     invalid("116CGDLddrZhMrTwhCVJXtXQpxygTT1kHd", "BKX");
     invalid("mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef", "bankex", "testnet");
     invalid("mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef", "BKX", "testnet");
   });
 
-  it("should return false for incorrect digibyte addresses", function () {
+  it("should return false for incorrect digibyte addresses", () => {
     commonTests("digibyte");
   });
 
-  it("should return false for incorrect eip55 addresses", function () {
+  it("should return false for incorrect eip55 addresses", () => {
     invalid("6xAff4d6793F584a473348EbA058deb8caad77a288", "ethereum");
     invalid("0x02fcd51aAbB814FfFe17908fbc888A8975D839A5", "ethereum");
     invalid("0XD1220A0CF47C7B9BE7A2E6BA89F429762E7B9ADB", "ethereum");
@@ -2077,7 +2077,7 @@ describe("invalid results", function () {
     invalid("0x02fcd51aAbB814FfFe17908fbc888A8975D839A5", "callisto");
   });
 
-  it("should return false for incorrect Aptos addresses", function () {
+  it("should return false for incorrect Aptos addresses", () => {
     invalid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "aptos");
     invalid("0xa00354276d2fC74ee91e37D085d35748613f4748", "aptos");
     invalid("0xAff4d6793F584a473348EbA058deb8caad77a288", "APT");
@@ -2085,92 +2085,92 @@ describe("invalid results", function () {
     invalid("1669599662", "APT");
   });
 
-  it("should return false for incorrect ripple addresses", function () {
+  it("should return false for incorrect ripple addresses", () => {
     invalid("rG1QQv2nh2gr7RCZ1P8YYcBUKCCN633jCN", "ripple");
     invalid("rDTXLQ7ZKZVKz33zJbHjgVShjsBnqMBhMN", "XRP");
     invalid("6xAff4d6793F584a473348EbA058deb8ca", "ripple");
     invalid("DJ53hTyLBdZp2wMi5BsCS3rtEL1ioYUkva", "ripple");
   });
 
-  it("should return false for incorrect dash addresses", function () {
+  it("should return false for incorrect dash addresses", () => {
     commonTests("dash");
   });
 
-  it("should return false for incorrect neo addresses", function () {
+  it("should return false for incorrect neo addresses", () => {
     commonTests("neo");
     invalid("AR4QmqYENiZAD6oXe7ftm6eDcwtHk7rVTa", "neo");
     invalid("AKDVzYGLczmykdtRaejgvWeZrvdkVEvQ10", "NEO");
   });
 
-  it("should return false for incorrect qtum addresses", function () {
+  it("should return false for incorrect qtum addresses", () => {
     commonTests("qtum");
     invalid("QNPhBbVhDghASxcUh2vHotQUgNeLRFTcfb", "qtum");
     invalid("QOPhBbVhDghASxcUh2vHotQUgNeLRFTcfa", "QTUM");
   });
 
-  it("should return false for incorrect votecoin addresses", function () {
+  it("should return false for incorrect votecoin addresses", () => {
     commonTests("votecoin");
     invalid("t1Y9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq", "votecoin");
     invalid("t3Yz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", "VOT");
     invalid("t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "votecoin", "testnet");
   });
 
-  it("should return false for incorrect bitcoinz addresses", function () {
+  it("should return false for incorrect bitcoinz addresses", () => {
     commonTests("bitcoinz");
     invalid("t1Y9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq", "bitcoinz");
     invalid("t3Yz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", "BTCZ");
     invalid("t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "bitcoinz", "testnet");
   });
 
-  it("should return false for incorrect zclassic addresses", function () {
+  it("should return false for incorrect zclassic addresses", () => {
     commonTests("zclassic");
     invalid("t1Y9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq", "zclassic");
     invalid("t3Yz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", "ZCL");
     invalid("t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "zclassic", "testnet");
   });
 
-  it("should return false for incorrect hush addresses", function () {
+  it("should return false for incorrect hush addresses", () => {
     invalid("t1Y9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq", "hush");
     invalid("t3Yz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", "HUSH");
     invalid("t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "hush", "testnet");
   });
 
-  it("should return false for incorrect zcash addresses", function () {
+  it("should return false for incorrect zcash addresses", () => {
     commonTests("zcash");
     invalid("t1Y9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq", "zcash");
     invalid("t3Yz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", "ZEC");
     invalid("t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "zcash", "testnet");
   });
 
-  it("should return false for incorrect bitcoinprivate addresses", function () {
+  it("should return false for incorrect bitcoinprivate addresses", () => {
     commonTests("bitcoinprivate");
     invalid("b1Y4XXPFhwMb1SP33yhzn3h9qWXjujkgep4", "bitcoinprivate");
     //invalid('bx....', 'BTCP');
     //invalid('nx....', 'bitcoinprivate', 'testnet');
   });
 
-  it("should return false for incorrect snowgem addresses", function () {
+  it("should return false for incorrect snowgem addresses", () => {
     commonTests("snowgem");
     invalid("s1Yx7WBkjB4UH6qQjPp6Ysmtr1C1JiTK2Yw", "snowgem");
     invalid("s3Y27MhkBRt3ha2UuxhjXaYF4DCnttTMnL1", "SNG");
     invalid("t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "snowgem", "testnet");
   });
 
-  it("should return false for incorrect zencash addresses", function () {
+  it("should return false for incorrect zencash addresses", () => {
     commonTests("zencash");
     invalid("znYiGGfYRepxkBjXYvA2kFrXiC351i9ta4z", "zencash");
     invalid("zsYEdGnZCQ9G86LZFtbynMn1hYTVhn6eYCL", "ZEN");
     invalid("ztYWMDLWjbruCJxKmmfAZiT6QAQdiv5F291", "zencash", "testnet");
   });
 
-  it("should return false for incorrect komodo addresses", function () {
+  it("should return false for incorrect komodo addresses", () => {
     commonTests("komodo");
     invalid("R9Y5HirAzqDcWrWGiJEL115dpV3QB3hobH", "komodo");
     invalid("RAYj2KKVUohTu3hVdNJ4U6hQi7TNawpacH", "KMD");
     //invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'komodo', 'testnet');
   });
 
-  it("should return false for incorrect cardano addresses", function () {
+  it("should return false for incorrect cardano addresses", () => {
     commonTests("cardano");
     invalid(
       "Ae2tdPwUPEYxYNJw1He1esdZYvjmr4NtPzUsGTiqL9zd8ohjZYQcwu6lom7",
@@ -2187,7 +2187,7 @@ describe("invalid results", function () {
     //invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'komodo', 'testnet');
   });
 
-  it("should return false for incorrect monero addresses", function () {
+  it("should return false for incorrect monero addresses", () => {
     commonTests("monero");
     invalid(
       "4AWygwA3hHNE4e4Yr9PtRWJiorXTjZkCi57g4ExYzfXDFFQ8DRFEFyui1dLqVknpqQjGUBdTMbgaFAZaDbrVHdk3GAKBZ3E",
@@ -2214,7 +2214,7 @@ describe("invalid results", function () {
     );
   });
 
-  it("should return false for incorrect waves addresses", function () {
+  it("should return false for incorrect waves addresses", () => {
     commonTests("waves");
     invalid("3P93mVrYnQ4ahaRMYwA2BeWY32eDxTpLVEs1", "waves");
     invalid("3P4eeU7v1LMHQFwwT2GW9W99c6vZyytHaj", "waves");
@@ -2224,7 +2224,7 @@ describe("invalid results", function () {
     invalid("3My3KZgFQ3CrVHgz6vGRt8787sH4oAA1qp8", "waves", "testnet");
   });
 
-  it("should return false for incorrect nano addresses", function () {
+  it("should return false for incorrect nano addresses", () => {
     commonTests("nano");
     invalid(
       "xrb_1f5e4w33ndqbkx4bw5jtp13kp5xghebfxcmw9hdt1f7goid1s4373w6tjdgu",
@@ -2244,7 +2244,7 @@ describe("invalid results", function () {
     );
   });
 
-  it("should return false for incorrect siacoin addresses", function () {
+  it("should return false for incorrect siacoin addresses", () => {
     commonTests("siacoin");
     invalid(
       "ffe1308c044ade30392a0cdc1fd5a4dbe94f9616a95faf888ed36123d9e711557aa497530372",
@@ -2252,14 +2252,14 @@ describe("invalid results", function () {
     );
   });
 
-  it("should return false for incorrect lbry addresses", function () {
+  it("should return false for incorrect lbry addresses", () => {
     commonTests("lbc");
     invalid(
       "ffe1308c044ade30392a0cdc1fd5a4dbe94f9616a95faf888ed36123d9e711557aa497530372",
     );
   });
 
-  it("should return false for incorrect tron addresses", function () {
+  it("should return false for incorrect tron addresses", () => {
     commonTests("trx");
     invalid(
       "xrb_1111111112111111111111111111111111111111111111111111hifc8npp",
@@ -2268,7 +2268,7 @@ describe("invalid results", function () {
     invalid("TNDzfERDpxLDS2w1q6yaFC7pzqaSQ3Bg31", "trx");
   });
 
-  it("should return false for incorrect nem addresses", function () {
+  it("should return false for incorrect nem addresses", () => {
     commonTests("nem");
     invalid(
       "xrb_1111111112111111111111111111111111111111111111111111hifc8npp",
@@ -2280,7 +2280,7 @@ describe("invalid results", function () {
     invalid("3My3KZgFQ3CrVHgz6vGRt8787sH4oAA1qp8", "nem", "testnet");
   });
 
-  it("should return false for incorrect bsv addresses", function () {
+  it("should return false for incorrect bsv addresses", () => {
     commonTests("bsv");
     invalid(
       "xrb_1111111112111111111111111111111111111111111111111111hifc8npp",
@@ -2296,7 +2296,7 @@ describe("invalid results", function () {
     invalid("qra607y4wnkmnpy3wcmrxmltzkrxywcq85c7watpdx09", "bsv");
   });
 
-  it("should return false for incorrect stellar addresses", function () {
+  it("should return false for incorrect stellar addresses", () => {
     commonTests("stellar");
     invalid(
       "SBGWKM3CD4IL47QN6X54N6Y33T3JDNVI6AIJ6CD5IM47HG3IG4O36XCU",
@@ -2334,14 +2334,14 @@ describe("invalid results", function () {
     invalid("g4VPBPrHZkfE8CsjuG2S4yBQNd455UWmk", "stellar");
   });
 
-  it("should return false for incorrect vet addresses", function () {
+  it("should return false for incorrect vet addresses", () => {
     commonTests("vet");
     invalid("SBGWKM3CD4IL47QN6X54N6Y33T3JDNVI6AIJ6CD5IM47HG3IG4O36XCU", "vet");
     invalid("Ox46B8aABa5Eaa84Dc074c350eD57D8b3c35B90E09", "vet");
     invalid("0x46b8aABa5Eaa84Dc074c350eD57D8b3c35B90E09", "vet");
   });
 
-  it("should return false for incorrect algo addresses", function () {
+  it("should return false for incorrect algo addresses", () => {
     commonTests("algo");
     invalid(
       "GPNISIUAYDOMHM7VURRAAAP5H6OAWRRBCPXEIOZO3QI7TZKR5GTAQ7WK7Y",
@@ -2361,7 +2361,7 @@ describe("invalid results", function () {
     );
   });
 
-  it("should return false for incorrect dot addresses", function () {
+  it("should return false for incorrect dot addresses", () => {
     commonTests("dot");
     invalid("1jQPKJmghHbrRhUiMt2cNEuxYbR6S9vYtJKqYvE4PNR9WDB", "dot");
     invalid("1FRMM8PEiWXYax7rpS6X4XZX1aAAxSWx1CrKTyrVYhV24fh", "dot");
@@ -2369,5 +2369,124 @@ describe("invalid results", function () {
     invalid("pjsLDC1JFyrhm3ftC9Gs4QoyrkHKhZKtK7YqGTRFtTafgp", "dot");
     invalid("15FKUKXC6kwaXxJ1tNywmFy4ZY6FoDFCnU3fMbibFdeqwGw", "dot");
     invalid("CxDDSH8gS7jecsxaRL8Txf8H5kqesLXAEAEgp76Yz632J9M", "dot");
+  });
+
+  // Special tokens: KAU, KAG (Stellar-based)
+  it("should return true for correct KAU addresses", () => {
+    valid("GCNY5OXYSY4FKHOPT2SPOQZAOEIGXBQ2BQQW7AU4JHXJ3NJ5VK3TOTXQM", "kau");
+    valid("GB6NVEN5HSUBKMYCE5ZOWSK5K23TBWRUQLZY3KNMXUZ3AQ2ESC4MY4AQ", "KAU");
+  });
+
+  it("should return false for incorrect KAU addresses", () => {
+    commonTests("kau");
+    invalid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "kau");
+    invalid("SBGWKM3CD4IL47QN6X54N6Y33T3JDNVI6AIJ6CD5IM47HG3IG4O36XCU", "kau");
+  });
+
+  it("should return true for correct KAG addresses", () => {
+    valid("GCNY5OXYSY4FKHOPT2SPOQZAOEIGXBQ2BQQW7AU4JHXJ3NJ5VK3TOTXQM", "kag");
+    valid("GB6NVEN5HSUBKMYCE5ZOWSK5K23TBWRUQLZY3KNMXUZ3AQ2ESC4MY4AQ", "KAG");
+  });
+
+  it("should return false for incorrect KAG addresses", () => {
+    commonTests("kag");
+    invalid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "kag");
+    invalid("SBGWKM3CD4IL47QN6X54N6Y33T3JDNVI6AIJ6CD5IM47HG3IG4O36XCU", "kag");
+  });
+
+  // KVT (dual network: ETH + XLM)
+  it("should return true for correct KVT addresses (Ethereum)", () => {
+    valid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "kvt", {
+      chainType: "ethereum",
+    });
+    valid("0xa00354276d2fC74ee91e37D085d35748613f4748", "KVT", {
+      chainType: "erc20",
+    });
+  });
+
+  it("should return true for correct KVT addresses (Stellar)", () => {
+    valid("GCNY5OXYSY4FKHOPT2SPOQZAOEIGXBQ2BQQW7AU4JHXJ3NJ5VK3TOTXQM", "kvt", {
+      chainType: "stellar",
+    });
+    valid("GB6NVEN5HSUBKMYCE5ZOWSK5K23TBWRUQLZY3KNMXUZ3AQ2ESC4MY4AQ", "KVT", {
+      chainType: "xlm",
+    });
+  });
+
+  it("should return false for incorrect KVT addresses", () => {
+    commonTests("kvt");
+    invalid("invalid_address", "kvt");
+    invalid("SBGWKM3CD4IL47QN6X54N6Y33T3JDNVI6AIJ6CD5IM47HG3IG4O36XCU", "kvt", {
+      chainType: "ethereum",
+    });
+    invalid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "kvt", {
+      chainType: "stellar",
+    });
+  });
+
+  // C1XXX tokens (Stellar-based)
+  it("should return true for correct C1USD addresses", () => {
+    valid("GCNY5OXYSY4FKHOPT2SPOQZAOEIGXBQ2BQQW7AU4JHXJ3NJ5VK3TOTXQM", "c1usd");
+    valid("GB6NVEN5HSUBKMYCE5ZOWSK5K23TBWRUQLZY3KNMXUZ3AQ2ESC4MY4AQ", "C1USD");
+  });
+
+  it("should return false for incorrect C1USD addresses", () => {
+    commonTests("c1usd");
+    invalid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "c1usd");
+    invalid("SBGWKM3CD4IL47QN6X54N6Y33T3JDNVI6AIJ6CD5IM47HG3IG4O36XCU", "c1usd");
+  });
+
+  it("should return true for correct C1GBP addresses", () => {
+    valid("GCNY5OXYSY4FKHOPT2SPOQZAOEIGXBQ2BQQW7AU4JHXJ3NJ5VK3TOTXQM", "c1gbp");
+  });
+
+  it("should return false for incorrect C1GBP addresses", () => {
+    commonTests("c1gbp");
+    invalid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "c1gbp");
+  });
+
+  it("should return true for correct C1AUD addresses", () => {
+    valid("GCNY5OXYSY4FKHOPT2SPOQZAOEIGXBQ2BQQW7AU4JHXJ3NJ5VK3TOTXQM", "c1aud");
+  });
+
+  it("should return false for incorrect C1AUD addresses", () => {
+    commonTests("c1aud");
+    invalid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "c1aud");
+  });
+
+  it("should return true for correct C1CAD addresses", () => {
+    valid("GCNY5OXYSY4FKHOPT2SPOQZAOEIGXBQ2BQQW7AU4JHXJ3NJ5VK3TOTXQM", "c1cad");
+  });
+
+  it("should return false for incorrect C1CAD addresses", () => {
+    commonTests("c1cad");
+    invalid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "c1cad");
+  });
+
+  it("should return true for correct C1CHF addresses", () => {
+    valid("GCNY5OXYSY4FKHOPT2SPOQZAOEIGXBQ2BQQW7AU4JHXJ3NJ5VK3TOTXQM", "c1chf");
+  });
+
+  it("should return false for incorrect C1CHF addresses", () => {
+    commonTests("c1chf");
+    invalid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "c1chf");
+  });
+
+  it("should return true for correct C1AED addresses", () => {
+    valid("GCNY5OXYSY4FKHOPT2SPOQZAOEIGXBQ2BQQW7AU4JHXJ3NJ5VK3TOTXQM", "c1aed");
+  });
+
+  it("should return false for incorrect C1AED addresses", () => {
+    commonTests("c1aed");
+    invalid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "c1aed");
+  });
+
+  it("should return true for correct C1SGD addresses", () => {
+    valid("GCNY5OXYSY4FKHOPT2SPOQZAOEIGXBQ2BQQW7AU4JHXJ3NJ5VK3TOTXQM", "c1sgd");
+  });
+
+  it("should return false for incorrect C1SGD addresses", () => {
+    commonTests("c1sgd");
+    invalid("0xE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF", "c1sgd");
   });
 });

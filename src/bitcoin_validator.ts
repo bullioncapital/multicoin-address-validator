@@ -1,121 +1,148 @@
+import { decodeBase58 } from "jsr:@std/encoding/base58";
 import segwit from "./crypto/segwit_addr.ts";
 import { sha256Checksum, toHex } from "./crypto/utils.ts";
-import { Currency, CurrencyOpts } from "./types/currency.ts";
-import { decodeBase58 } from "jsr:@std/encoding/base58";
+import type { Currency, CurrencyOpts } from "./types/currency.ts";
 
 const DEFAULT_NETWORK_TYPE = "prod";
 
 function isSegwitAddressValid(
-  address: string,
-  currency: Currency,
-  opts: CurrencyOpts = {},
+	address: string,
+	currency: Currency,
+	opts: CurrencyOpts = {},
 ) {
-  if (!currency.bech32Hrp) {
-    return false;
-  }
+	if (!currency.bech32Hrp) {
+		return false;
+	}
 
-  const { networkType = DEFAULT_NETWORK_TYPE } = opts;
+	const { networkType = DEFAULT_NETWORK_TYPE } = opts;
 
-  let correctBech32Hrps;
-  if (
-    currency.bech32Hrp && (networkType === "prod" || networkType === "testnet")
-  ) {
-    correctBech32Hrps = currency.bech32Hrp[networkType];
-  } else if (currency.bech32Hrp) {
-    correctBech32Hrps = currency.bech32Hrp.prod.concat(
-      currency.bech32Hrp.testnet,
-    );
-  } else {
-    return false;
-  }
+	let correctBech32Hrps: string[];
+	if (
+		currency.bech32Hrp &&
+		(networkType === "prod" || networkType === "testnet")
+	) {
+		correctBech32Hrps = currency.bech32Hrp[networkType];
+	} else if (currency.bech32Hrp) {
+		correctBech32Hrps = currency.bech32Hrp.prod.concat(
+			currency.bech32Hrp.testnet,
+		);
+	} else {
+		return false;
+	}
 
-  for (const chrp of correctBech32Hrps) {
-    const ret = segwit.decode(chrp, address);
-    if (ret) {
-      return segwit.encode(chrp, ret.version, ret.program) ===
-        address.toLowerCase();
-    }
-  }
+	for (const chrp of correctBech32Hrps) {
+		const ret = segwit.decode(chrp, address);
+		if (ret) {
+			return (
+				segwit.encode(chrp, ret.version, ret.program) === address.toLowerCase()
+			);
+		}
+	}
 
-  return false;
+	return false;
 }
 
 function getDecoded(address: string) {
-  try {
-    return decodeBase58(address);
-  } catch (e) {
-    // if decoding fails, assume invalid address
-    return null;
-  }
+	try {
+		return decodeBase58(address);
+	} catch (_e) {
+		// if decoding fails, assume invalid address
+		return null;
+	}
 }
 
 function getAddressType(address: string, currency: Currency) {
-  currency = currency || {};
-  // should be 25 bytes per btc address spec and 26 decred
-  const expectedLength = currency.expectedLength || 25;
-  const decoded = getDecoded(address);
+	currency = currency || {};
+	// should be 25 bytes per btc address spec and 26 decred
+	const expectedLength = currency.expectedLength || 25;
+	const decoded = getDecoded(address);
 
-  if (decoded) {
-    const length = decoded.length;
+	if (decoded) {
+		const length = decoded.length;
 
-    if (length !== expectedLength) {
-      return null;
-    }
+		if (length !== expectedLength) {
+			return null;
+		}
 
-    if (currency.regex) {
-      if (!currency.regex.test(address)) {
-        return false;
-      }
-    }
+		if (currency.regex) {
+			if (!currency.regex.test(address)) {
+				return false;
+			}
+		}
 
-    const checksum = toHex(decoded.slice(length - 4, length)),
-      body = toHex(decoded.slice(0, length - 4)),
-      goodChecksum = sha256Checksum(body);
+		const checksum = toHex(decoded.slice(length - 4, length)),
+			body = toHex(decoded.slice(0, length - 4)),
+			goodChecksum = sha256Checksum(body);
 
-    return checksum === goodChecksum
-      ? toHex(decoded.slice(0, expectedLength - 24))
-      : null;
-  }
+		return checksum === goodChecksum
+			? toHex(decoded.slice(0, expectedLength - 24))
+			: null;
+	}
 
-  return null;
+	return null;
 }
 
 function isValidP2PKHandP2SHAddress(
-  address: string,
-  currency: Currency,
-  opts: CurrencyOpts,
+	address: string,
+	currency: Currency,
+	opts: CurrencyOpts,
 ) {
-  const { networkType = DEFAULT_NETWORK_TYPE } = opts;
+	const { networkType = DEFAULT_NETWORK_TYPE } = opts;
 
-  let correctAddressTypes;
-  const addressType = getAddressType(address, currency);
+	let correctAddressTypes: string[];
+	const addressType = getAddressType(address, currency);
 
-  if (currency.addressTypes && addressType) {
-    if (networkType === "prod" || networkType === "testnet") {
-      correctAddressTypes = currency.addressTypes[networkType];
-    } else if (currency.addressTypes) {
-      correctAddressTypes = currency.addressTypes.prod.concat(
-        currency.addressTypes.testnet,
-      );
-    } else {
-      return false;
-    }
+	if (currency.addressTypes && addressType) {
+		if (networkType === "prod" || networkType === "testnet") {
+			correctAddressTypes = currency.addressTypes[networkType];
+		} else if (currency.addressTypes) {
+			correctAddressTypes = currency.addressTypes.prod.concat(
+				currency.addressTypes.testnet,
+			);
+		} else {
+			return false;
+		}
 
-    return correctAddressTypes.indexOf(addressType) >= 0;
-  }
+		return correctAddressTypes.indexOf(addressType) >= 0;
+	}
 
-  return false;
+	return false;
 }
 
 const isValidBitcoinAddress = (
-  address: string,
-  currency: Currency,
-  opts: CurrencyOpts = {},
+	address: string,
+	currency: Currency,
+	opts: CurrencyOpts = {},
 ) => {
-  return (
-    isValidP2PKHandP2SHAddress(address, currency, opts) ||
-    isSegwitAddressValid(address, currency, opts)
-  );
+	return (
+		isValidP2PKHandP2SHAddress(address, currency, opts) ||
+		isSegwitAddressValid(address, currency, opts)
+	);
 };
 
 export { isValidBitcoinAddress };
+
+const verifyChecksum = (address: string) => {
+	// Bitcoin checksum is validated as part of address validation
+	// This is a simplified checksum verification
+	try {
+		const decoded = getDecoded(address);
+		if (!decoded) return false;
+		const length = decoded.length;
+		const expectedLength = 25; // Default Bitcoin address length
+		if (length !== expectedLength) return false;
+
+		const checksum = toHex(decoded.slice(length - 4, length));
+		const body = toHex(decoded.slice(0, length - 4));
+		const goodChecksum = sha256Checksum(body);
+
+		return checksum === goodChecksum;
+	} catch {
+		return false;
+	}
+};
+
+export default {
+	isValidAddress: isValidBitcoinAddress,
+	verifyChecksum,
+};

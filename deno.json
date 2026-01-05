@@ -1,17 +1,18 @@
 {
-  "type": "commonjs",
-  "tasks": {
-    "dev": "deno run --watch main.ts"
-  },
-  "imports": {
-    "decimal.js": "npm:decimal.js-light@^2.5.1",
-    "base-x": "npm:base-x@^4.0.0",
-    "buffer": "npm:buffer@^6.0.3",
-    "bundle": "npm:bundle@^2.1.0",
-    "cbor-js": "npm:cbor-js@^0.1.0",
-    "crc": "npm:crc@^4.3.2",
-    "js-sha512": "npm:js-sha512@^0.9.0",
-    "jssha": "npm:jssha@^3.3.1",
-    "lodash.isequal": "npm:lodash.isequal@^4.5.0"
-  }
+	"type": "commonjs",
+	"tasks": {
+		"dev": "deno run --watch main.ts",
+		"build": "deno bundle src/wallet_address_validator.ts -o dist/wallet-address-validator.esm.js"
+	},
+	"imports": {
+		"decimal.js": "npm:decimal.js-light@^2.5.1",
+		"base-x": "npm:base-x@^4.0.0",
+		"buffer": "npm:buffer@^6.0.3",
+		"bundle": "npm:bundle@^2.1.0",
+		"cbor-js": "npm:cbor-js@^0.1.0",
+		"crc": "npm:crc@^4.3.2",
+		"js-sha512": "npm:js-sha512@^0.9.0",
+		"jssha": "npm:jssha@^3.3.1",
+		"lodash.isequal": "npm:lodash.isequal@^4.5.0"
+	}
 }
