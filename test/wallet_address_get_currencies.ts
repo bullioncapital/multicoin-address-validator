@@ -1,18 +1,18 @@
 import {
-  findCurrency,
-  getCurrencies,
+    findCurrency,
+    getCurrencies,
 } from "../src/wallet_address_validator.ts";
 import { expect } from "jsr:@std/expect";
 import { describe, it } from "jsr:@std/testing/bdd";
 
 describe("WAValidator.getCurrencies()", () => {
-  it("Should get all currencies", function () {
+  it("Should get all currencies", () => {
     const currencies = getCurrencies();
-    expect(currencies).toReturn();
+    expect(currencies).toBeDefined();
     expect(currencies.length).toBeGreaterThan(0);
   });
 
-  it("Should find a specific currency by symbol", function () {
+  it("Should find a specific currency by symbol", () => {
     const currency = findCurrency("xrp");
 
     if (!currency) {
@@ -22,7 +22,7 @@ describe("WAValidator.getCurrencies()", () => {
     expect(currency.symbol).toEqual("xrp");
   });
 
-  it("Should find a specific currency by name", function () {
+  it("Should find a specific currency by name", () => {
     const currency = findCurrency("Ripple");
 
     if (!currency) {
@@ -32,7 +32,7 @@ describe("WAValidator.getCurrencies()", () => {
     expect(currency.symbol).toEqual("xrp");
   });
 
-  it("Should return null if currency is not found", function () {
+  it("Should return null if currency is not found", () => {
     const currency = findCurrency("random");
     expect(currency).toBe(null);
   });

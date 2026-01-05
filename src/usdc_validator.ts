@@ -1,5 +1,5 @@
 import { isValidAddress } from "./base58_validator.ts";
-import ETHValidator from "./ethereum_validator";
+import ETHValidator from "./ethereum_validator.ts";
 import type { Currency, CurrencyOpts } from "./types/currency.ts";
 
 const solanaValidator = (address: string, currency: Currency) =>
