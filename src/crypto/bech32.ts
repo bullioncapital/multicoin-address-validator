@@ -58,12 +58,9 @@ function hrpExpand(hrp: string) {
 	return ret;
 }
 
-function verifyChecksum(
-	hrp: string,
-	data: Uint8Array | number[],
-	enc: Encodings,
-) {
-	return polymod(hrpExpand(hrp).concat(data)) === getEncodingConst(enc);
+function verifyChecksum(hrp: string, data: Uint8Array | number[], enc: Encodings) {
+	const dataArray = Array.isArray(data) ? data : Array.from(data);
+	return polymod(hrpExpand(hrp).concat(dataArray)) === getEncodingConst(enc);
 }
 
 function createChecksum(hrp: string, data: number[], enc: Encodings) {

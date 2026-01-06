@@ -7,6 +7,7 @@ import HbarValidator from "./hbar_validator.ts";
 import KVTValidator from "./kvt_validator.ts";
 import XRPValidator from "./ripple_validator.ts";
 import XLMValidator from "./stellar_validator.ts";
+import TronValidator from "./tron_validator.ts";
 import type { Currency } from "./types/currency.ts";
 import USDCValidator from "./usdc_validator.ts";
 import USDTValidator from "./usdt_validator.ts";
@@ -186,7 +187,7 @@ const CURRENCIES: Currency[] = [
 	{
 		name: "Tron",
 		symbol: "trx",
-		validator: ETHValidator,
+		validator: TronValidator,
 	},
 	// Other blockchains
 	{
@@ -261,13 +262,12 @@ const CURRENCIES: Currency[] = [
 		symbol: "c1sgd",
 		validator: XLMValidator,
 	},
-	// Dual network tokens
+	// Multi-chain tokens
 	{
 		name: "KVT",
 		symbol: "kvt",
 		validator: KVTValidator,
 	},
-	// Multi-chain tokens
 	{
 		name: "Tether",
 		symbol: "usdt",
