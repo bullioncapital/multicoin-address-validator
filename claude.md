@@ -128,7 +128,6 @@ Located in `src/crypto/`:
 ### Production Dependencies
 - **@scure/base** (2.0.0) - Unified base encoding library (base58, base32, hex, bech32)
 - **base-x** (4.0.1) - Base encoding for Stellar's custom alphabet
-- **bchaddrjs** (0.5.2) - Bitcoin Cash address format conversion
 - **cbor-js** (0.1.0) - CBOR decoding for Cardano Byron addresses
 - **crc** (4.3.2) - CRC checksums (Cardano, Stellar)
 - **js-sha3** (0.8.0) - Keccak-256 for Ethereum

@@ -1,3 +1,4 @@
 dist
 .pnpm-store
 node_modules
+stats.html

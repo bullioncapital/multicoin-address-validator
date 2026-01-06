@@ -4,7 +4,7 @@ Simple wallet address validator for validating Bitcoin and other altcoins addres
 
 Forked from [ryanralph/altcoin-address](https://github.com/ryanralph/altcoin-address).
 
-**File size: ~4.46 kB (ESM, minified and gzipped)** | **~4.17 kB (CJS, minified and gzipped)**
+**File size: ~5.01 kB (ESM, minified and gzipped)** | **~4.49 kB (CJS, minified and gzipped)**
 
 ## Installation
 
@@ -250,7 +250,6 @@ The library uses minimal, well-maintained dependencies:
 - `jssha` - SHA-256 implementation
 - `crc` - CRC checksums for Cardano and Stellar
 - `cbor-js` - CBOR decoding for Cardano Byron addresses
-- `bchaddrjs` - Bitcoin Cash address conversion
 
 ### Browser Compatibility
 The library is fully compatible with modern browsers. All cryptographic operations use `Uint8Array` instead of Node.js `Buffer` for maximum compatibility.
