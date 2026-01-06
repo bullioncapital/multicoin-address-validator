@@ -4,7 +4,7 @@ Simple wallet address validator for validating Bitcoin and other altcoins addres
 
 Forked from [ryanralph/altcoin-address](https://github.com/ryanralph/altcoin-address).
 
-**File size: ~16.85 kB (ESM, minified and gzipped)** | **~12.13 kB (CJS, minified and gzipped)**
+**File size: ~4.46 kB (ESM, minified and gzipped)** | **~4.17 kB (CJS, minified and gzipped)**
 
 ## Installation
 
