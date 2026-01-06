@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(deno test:*)",
+      "Bash(deno install)",
+      "Bash(deno eval:*)",
+      "WebSearch",
+      "WebFetch(domain:algorand.github.io)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm check:*)",
+      "Bash(node:*)",
+      "Bash(pnpm add:*)",
+      "Bash(cat:*)",
+      "Bash(pnpm search:*)",
+      "Bash(pnpm remove:*)",
+      "Bash(grep:*)",
+      "Bash(git checkout:*)",
+      "Bash(pnpm vitest run:*)"
+    ]
+  }
+}
