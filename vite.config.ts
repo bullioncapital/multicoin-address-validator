@@ -28,7 +28,7 @@ export default defineConfig({
         }
       }
     },
-    target: 'node14'
+    target: 'ES2020'
   },
   plugins: [visualizer()],
   test: {
